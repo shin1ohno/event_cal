@@ -2,4 +2,5 @@
 log/*.log
 pkg/
 tmp/
-spec/*/**/*_spec.rb.log
+spec/**/*_spec.rb.log
+spec/lib/**/*_spec.rb.log

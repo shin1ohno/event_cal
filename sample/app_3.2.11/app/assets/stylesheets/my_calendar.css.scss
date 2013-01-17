@@ -1,0 +1,22 @@
+// Place all the styles related to the my_calendar controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.calendar.monthly {
+  ul.dates {
+    width: 100%;
+    height: 100%;
+    height: 500px;
+  }
+  li.date {
+    display: inline-block;
+    vertical-align: top;
+    width: 13%;
+    height: 18%;
+  }
+  ul.events {
+    width: 100%;
+  }
+  li.event {
+    width: 100%;
+  }
+}
