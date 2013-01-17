@@ -9,4 +9,14 @@ class EventCal::Event
 
     @held_on = base_date
   end
+
+  def self.all
+    []
+  end
+
+  def self.fetch_events(start_on, end_on)
+    all.select do |event| 
+      (start_on .. end_on).include?(event.held_on)
+    end
+  end
 end

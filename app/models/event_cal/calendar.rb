@@ -11,4 +11,10 @@ class EventCal::Calendar
     @start_on = base_date.beginning_of_month.beginning_of_week(start_day = :sunday)
     @end_on = base_date.end_of_month.end_of_week(start_day = :sunday)
   end
+
+  def fetch_events
+    events = ::EventCal::Event.subclasses.map{ |klass|
+      klass.fetch_events(@start_on, @end_on)
+      }.flatten
+  end
 end
