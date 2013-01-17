@@ -4,7 +4,7 @@ require_relative '../../../app/models/event_cal/event'
 require 'active_support/core_ext'
 
 describe ::EventCal::Event do
-  let(:event) { ::EventCal::Event.new('2013-01-01') }
+  let(:event) { ::EventCal::Event.new(Date.parse('2013-01-01')) }
 
   describe '#held_on' do
     subject { event.held_on }
@@ -22,11 +22,11 @@ describe ::EventCal::Event do
     let(:end_on) { Date.parse('2013-01-31') }
     before do
       ::EventCal::Event.stub(:all).and_return {
-        [ ::EventCal::Event.new('2013-01-08'),
-          ::EventCal::Event.new('2013-01-18'),
-          ::EventCal::Event.new('2013-02-02'),
-          ::EventCal::Event.new('2013-02-03'),
-          ::EventCal::Event.new('2013-02-08')
+        [ ::EventCal::Event.new(Date.parse('2013-01-08')),
+          ::EventCal::Event.new(Date.parse('2013-01-18')),
+          ::EventCal::Event.new(Date.parse('2013-02-02')),
+          ::EventCal::Event.new(Date.parse('2013-02-03')),
+          ::EventCal::Event.new(Date.parse('2013-02-08'))
         ]
       }
     end

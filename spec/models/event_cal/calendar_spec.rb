@@ -3,7 +3,7 @@ require 'active_support/core_ext'
 require_relative '../../../app/models/event_cal/calendar'
 
 describe ::EventCal::Calendar do
-  let(:calendar) { ::EventCal::Calendar.new('2013-01-01') }
+  let(:calendar) { ::EventCal::Calendar.new(Date.parse('2013-01-01')) }
 
   describe '#start_on' do
     subject { calendar.start_on }
@@ -23,11 +23,11 @@ describe ::EventCal::Calendar do
         before do
           class Birthday < ::EventCal::Event
             def self.all
-              [ self.new('2013-01-08'),
-                self.new('2013-01-18'),
-                self.new('2013-02-02'),
-                self.new('2013-02-03'),
-                self.new('2013-02-08')
+              [ self.new(Date.parse('2013-01-08')),
+                self.new(Date.parse('2013-01-18')),
+                self.new(Date.parse('2013-02-02')),
+                self.new(Date.parse('2013-02-03')),
+                self.new(Date.parse('2013-02-08'))
               ]
             end
           end
@@ -39,8 +39,8 @@ describe ::EventCal::Calendar do
             before do
               class Holyday < ::EventCal::Event
                 def self.all
-                  [ self.new('2013-01-01'),
-                    self.new('2013-01-14')
+                  [ self.new(Date.parse('2013-01-01')),
+                    self.new(Date.parse('2013-01-14'))
                   ]
                 end
               end

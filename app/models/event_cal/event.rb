@@ -1,13 +1,7 @@
 class EventCal::Event
   attr :held_on
-  def initialize(date)
-    if date.class == Date
-      base_date = date
-    else
-      base_date = Date.parse(date)
-    end
-
-    @held_on = base_date
+  def initialize(date = Date.today)
+    @held_on = date
   end
 
   def self.all
