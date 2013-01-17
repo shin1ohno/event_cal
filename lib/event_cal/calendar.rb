@@ -1,4 +1,4 @@
-require_relative 'event'
+require 'event_cal/event'
 
 class EventCal::Calendar
   attr :start_on, :end_on
