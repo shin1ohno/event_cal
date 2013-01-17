@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    event_cal (0.0.1)
+    event_calendar (0.0.1)
       rails
 
 GEM
@@ -113,7 +113,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  event_cal!
+  event_calendar!
   pry
   rb-fsevent (~> 0.9.1)
   rspec
