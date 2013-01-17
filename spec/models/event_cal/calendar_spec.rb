@@ -4,16 +4,20 @@ require_relative '../../../app/models/event_cal/calendar'
 
 describe ::EventCal::Calendar do
   let(:calendar) { ::EventCal::Calendar.new('2013-01-01') }
+
   describe '#start_on' do
     subject { calendar.start_on }
     it { should == Date.parse('2012-12-30') }
   end
+
   describe '#end_on' do
     subject { calendar.end_on }
     it { should == Date.parse('2013-02-02') }
   end
+
   describe '#fetch_events' do
     subject { calendar.fetch_events }
+
     context '1 subclass for ::EventCal::Event' do
       context '3 events for calendar range and 2 is out of the range' do
         before do
@@ -29,6 +33,7 @@ describe ::EventCal::Calendar do
           end
         end
         it { should have(3).events }
+
         context 'another subclass for ::EventCal::Event' do
           context 'has 2 events in the range' do
             before do
