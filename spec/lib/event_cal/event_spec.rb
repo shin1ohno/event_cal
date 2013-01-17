@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative '../../../app/models/event_cal/event'
+require_relative '../../../lib/event_cal/event'
 
 require 'active_support/core_ext'
 

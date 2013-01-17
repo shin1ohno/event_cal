@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'active_support/core_ext'
-require_relative '../../../app/models/event_cal/calendar'
+require_relative '../../../lib/event_cal/calendar'
 
 describe ::EventCal::Calendar do
   let(:calendar) { ::EventCal::Calendar.new(Date.parse('2013-01-01')) }
