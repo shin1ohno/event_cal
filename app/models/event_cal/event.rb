@@ -15,7 +15,7 @@ class EventCal::Event
   end
 
   def self.fetch_events(start_on, end_on)
-    all.select do |event| 
+    all.select do |event|
       (start_on .. end_on).include?(event.held_on)
     end
   end
