@@ -14,6 +14,7 @@ gemspec
 # gem 'debugger'
 group :development do
   gem 'pry'
+  gem 'rails-sh'
   gem 'tork'
   gem 'rb-fsevent', '~> 0.9.1'
 end

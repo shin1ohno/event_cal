@@ -3,13 +3,13 @@ ENV['RAILS_VERSION']
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path(
-  "../dummy/app_#{ENV['RAILS_VERSION']}/config/environment",
+  "../../sample/app_#{ENV['RAILS_VERSION']}/config/environment",
   __FILE__)
 
 require 'rspec/rails'
 require 'rspec/autorun'
-
-require 'rspec/autorun'
+require 'factory_girl'
+require 'faker'
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
