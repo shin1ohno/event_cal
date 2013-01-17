@@ -10,8 +10,8 @@ class EventCal::Calendar
       base_date = Date.parse(date)
     end
 
-    @start_on = base_date.beginning_of_month.beginning_of_week(start_day = :sunday)
-    @end_on = base_date.end_of_month.end_of_week(start_day = :sunday)
+    @start_on = base_date.beginning_of_month.beginning_of_week(:sunday)
+    @end_on = base_date.end_of_month.end_of_week(:sunday)
   end
 
   def fetch_events
