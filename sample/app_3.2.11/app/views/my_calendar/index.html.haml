@@ -1,0 +1,4 @@
+.calendar.monthly
+  %ul.dates
+    - dates = (@calendar.start_on .. @calendar.end_on)
+    = render :partial => 'date', :collection => dates.to_a, :locals => { :events => @calendar.fetch_events }
