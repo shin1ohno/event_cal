@@ -1,4 +1,4 @@
-class EventCal::Event
+class EventCalendar::Event
   attr :held_on
   def initialize(date = Date.today)
     @held_on = date

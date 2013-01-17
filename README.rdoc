@@ -1,3 +1,3 @@
-= EventCal
+= EventCalendar
 
 This project rocks and uses MIT-LICENSE.
