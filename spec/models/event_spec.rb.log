@@ -1,10 +1,10 @@
 Run options: include {:focus=>true}
 
 All examples were filtered out; ignoring {:focus=>true}
-..
+.
 
-Finished in 0.00463 seconds
-2 examples, 0 failures
+Finished in 0.00248 seconds
+1 example, 0 failures
 
 Randomized with seed 56893
 
