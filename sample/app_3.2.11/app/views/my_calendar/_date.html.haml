@@ -1,0 +1,7 @@
+%li.date
+  = date
+  - event_for_date = events.select{ |event| event.held_on == date }
+  - if event_for_date.present?
+    %ul.events
+      - event_for_date.each do |event|
+        %li.event= event.name

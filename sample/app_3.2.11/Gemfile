@@ -4,6 +4,7 @@ gem 'rails', '3.2.11'
 
 gemspec path: File.expand_path('../../../', __FILE__)
 
+gem 'haml-rails'
 gem 'sqlite3'
 
 group :assets do
