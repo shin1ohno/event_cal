@@ -10,7 +10,7 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'factory_girl'
 require 'faker'
-require "response_code_matchers"
+require 'response_code_matchers'
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true

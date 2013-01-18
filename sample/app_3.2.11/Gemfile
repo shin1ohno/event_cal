@@ -6,6 +6,7 @@ gemspec path: File.expand_path('../../../', __FILE__)
 
 gem 'haml-rails'
 gem 'sqlite3'
+gem 'puma'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -19,6 +20,12 @@ end
 group :development do
   gem 'pry'
   gem 'rails-sh'
+  gem 'tork'
+  gem 'rb-fsevent', '~> 0.9.1'
+end
+
+group :test do
+  gem 'response_code_matchers'
 end
 
 gem 'jquery-rails'
