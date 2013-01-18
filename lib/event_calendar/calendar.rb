@@ -18,4 +18,5 @@ class EventCalendar::Calendar
   def events_on(date)
     @events.select{ |event| event.held_on == date }
   end
+
 end
