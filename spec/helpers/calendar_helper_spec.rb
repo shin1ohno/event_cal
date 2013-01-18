@@ -1,8 +1,8 @@
 require 'spec_helper'
 require_relative '../../lib/event_calendar/calendar'
-require_relative '../../app/helpers/calendar_helper'
+require_relative '../../lib/event_calendar/calendar_helper'
 
-describe CalendarHelper do
+describe ::EventCalendar::CalendarHelper do
   describe '#wday_class_for(date)' do
     subject { helper.wday_class_for(date) }
     let(:sunday) { Date.parse('2012-12-30') }
@@ -25,7 +25,7 @@ describe CalendarHelper do
     end
   end
 
-  describe '' do
+  describe 'wdays_row_for(calendar)' do
     subject { helper.wdays_row_for(calendar) }
     let(:calendar) { ::EventCalendar::Calendar.new }
     it { should have(7).items }

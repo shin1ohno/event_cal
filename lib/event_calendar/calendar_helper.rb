@@ -1,4 +1,4 @@
-module MyCalendarHelper
+module ::EventCalendar::CalendarHelper
   def wday_class_for(date)
     case date.wday
     when 0
@@ -11,5 +11,4 @@ module MyCalendarHelper
   def wdays_row_for(calendar)
     (calendar.start_on .. calendar.start_on + 6.days).map { |date| l date, :format => :calendar_row }
   end
-
 end
