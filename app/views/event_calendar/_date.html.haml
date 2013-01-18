@@ -1,7 +1,9 @@
-%li.date
-  = l date, :format => :calendar_cell
-  - event_for_date = calendar.events_on(date)
+- event_for_date = calendar.events_on(date)
+
+%li.date{ :class => hightlight_classes(date, calendar).join(' ') }
+  .header
+    %span{ :class => wday_class_for(date) }= l date, :format => :calendar_cell
   - if event_for_date.present?
     %ul.events
       - event_for_date.each do |event|
-        %li.event= event.name
+        %li.event= render "event_calendar/#{event.class.to_s.tableize}"

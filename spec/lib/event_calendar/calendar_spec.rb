@@ -3,7 +3,8 @@ require 'active_support/core_ext'
 require_relative '../../../lib/event_calendar/calendar'
 
 describe ::EventCalendar::Calendar do
-  let(:calendar) { ::EventCalendar::Calendar.new(Date.parse('2013-01-01')) }
+  let(:calendar) { ::EventCalendar::Calendar.new(base_date) }
+  let(:base_date) { Date.parse('2013-01-01') }
 
   describe '#start_on' do
     subject { calendar.start_on }
@@ -13,6 +14,11 @@ describe ::EventCalendar::Calendar do
   describe '#end_on' do
     subject { calendar.end_on }
     it { should == Date.parse('2013-02-02') }
+  end
+
+  describe '#base_date' do
+    subject { calendar.base_date }
+    it { should == base_date }
   end
 
   describe '#fetch_events' do

@@ -3,3 +3,4 @@ en:
     formats:
       calendar_cell: ! '%d'
       calendar_row: ! '%a'
+      calendar_title: ! 'calendar for %B'

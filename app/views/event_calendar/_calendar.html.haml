@@ -1,4 +1,5 @@
 .calendar.monthly
+  %h1= l calendar.base_date, :format => :calendar_title
   %ul.dates
     - wdays_row_for(calendar).each do |wday|
       %li.date.wday_header= wday

@@ -8,6 +8,12 @@ module ::EventCalendar::CalendarHelper
     end
   end
 
+  def hightlight_classes(date, calendar)
+    classes = []
+    classes << 'has_events' if calendar.events_on(date).present?
+    classes
+  end
+
   def wdays_row_for(calendar)
     (calendar.start_on .. calendar.start_on + 6.days).map { |date| l date, :format => :calendar_row }
   end
@@ -19,4 +25,5 @@ module ::EventCalendar::CalendarHelper
       :locals => { :calendar => calendar },
     )
   end
+
 end
