@@ -13,7 +13,7 @@ class OrderEvent < ::EventCalendar::Event
     user = User.where(:user_name => 'shin1ohno').first_or_create
     user.save!
     events = []
-    100.times do |i|
+    20.times do |i|
       order = user.orders.new(
         :delivery_on => Date.today + (((-1) ** i) * i).days,
         :product_name => "Product_#{i}",
