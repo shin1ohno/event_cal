@@ -13,7 +13,8 @@ Gem::Specification.new do |s|
   s.summary     = "Calendar with event"
   s.description = "Calendar with event that uses many models"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib,vendor}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.require_paths = ['lib']
 
   s.add_dependency 'rails'
   s.add_development_dependency 'rspec'
