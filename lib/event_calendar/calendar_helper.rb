@@ -11,4 +11,12 @@ module ::EventCalendar::CalendarHelper
   def wdays_row_for(calendar)
     (calendar.start_on .. calendar.start_on + 6.days).map { |date| l date, :format => :calendar_row }
   end
+
+  def render_monthly(calendar)
+    render(
+      :partial => 'event_calendar/calendar',
+      :format => :html,
+      :locals => { :calendar => calendar },
+    )
+  end
 end

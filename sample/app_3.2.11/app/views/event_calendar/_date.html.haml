@@ -1,6 +1,6 @@
 %li.date
   = l date, :format => :calendar_cell
-  - event_for_date = @calendar.events_on(date)
+  - event_for_date = calendar.events_on(date)
   - if event_for_date.present?
     %ul.events
       - event_for_date.each do |event|
