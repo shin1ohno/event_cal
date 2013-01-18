@@ -1,5 +1,6 @@
 require 'event_calendar/calendar'
 require 'order_event'
+require 'birthday_event'
 
 class MyCalendarController < ApplicationController
   respond_to :html
