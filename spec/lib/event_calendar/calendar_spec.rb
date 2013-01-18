@@ -16,7 +16,7 @@ describe ::EventCalendar::Calendar do
   end
 
   describe '#fetch_events' do
-    subject { calendar.fetch_events }
+    subject { calendar.events }
 
     context '1 subclass for ::EventCalendar::Event' do
       context '3 events for calendar range and 2 is out of the range' do
@@ -33,6 +33,11 @@ describe ::EventCalendar::Calendar do
           end
         end
         it { should have(3).events }
+
+        describe '#events_on(date)' do
+          subject { calendar.events_on(Date.parse('2013-01-08')) }
+          it { should have(1).events }
+        end
 
         context 'another subclass for ::EventCalendar::Event' do
           context 'has 2 events in the range' do
