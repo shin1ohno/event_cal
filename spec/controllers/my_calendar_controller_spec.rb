@@ -10,7 +10,7 @@ describe MyCalendarController do
       cal = assigns(:calendar)
       cal.start_on.should == calendar.start_on
       cal.end_on.should == calendar.end_on
-      cal.fetch_events.should have(18).events
+      cal.fetch_events.first.should be_a_kind_of ::EventCalendar::Event
     end
   end
 end
