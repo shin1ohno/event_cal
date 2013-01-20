@@ -1,4 +1,4 @@
-= EventCalendar
+# EventCalendar #
 
 EventCalendar is a calendar with events on it.
 
@@ -8,7 +8,7 @@ You can easily
 - customize how events displayed
 - integrate events with existing model
 
-== Use EventCalendar
+## Use EventCalendar ##
 
 ```ruby
 gem 'event_calendar', github: 'shin1ohno/event_calendar'
@@ -20,7 +20,7 @@ gem 'event_calendar', github: 'shin1ohno/event_calendar'
 
 ```sample/app_***``` directory contains sample rails application that shows how you do. This sample runs as normal rails application.
 
-== Develop EventCalendar
+## Develop EventCalendar ##
 
 Run
 
@@ -31,6 +31,6 @@ bundle exec tork
 
 then hit a to run all the tests.
 
-== License
+## License ##
 
-This project rocks and uses MIT-LICENSE.
+This project uses MIT-LICENSE.
