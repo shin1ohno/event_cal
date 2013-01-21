@@ -14,12 +14,6 @@ module ::EventCalendar::CalendarHelper
     classes
   end
 
-  def wdays_row_for(calendar)
-    (calendar.start_on .. calendar.start_on + 6.days).map do |date|
-      l date, :format => :calendar_row
-    end
-  end
-
   def render_monthly(calendar)
     render(
       :partial => 'event_calendar/calendar',
