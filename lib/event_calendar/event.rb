@@ -8,9 +8,9 @@ class EventCalendar::Event
     []
   end
 
-  def self.fetch_events(start_on, end_on)
+  def self.fetch_events(calendar)
     all.select do |event|
-      (start_on .. end_on).include?(event.held_on)
+      (calendar.start_on .. calendar.end_on).include?(event.held_on)
     end
   end
 end
