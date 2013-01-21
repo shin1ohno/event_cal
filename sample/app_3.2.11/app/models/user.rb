@@ -1,3 +1,4 @@
 class User < ActiveRecord::Base
-  attr_accessible :user_name
+  has_many :orders
+  attr_accessible :user_name, :birth_day
 end

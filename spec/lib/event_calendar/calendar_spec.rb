@@ -3,7 +3,8 @@ require 'active_support/core_ext'
 require_relative '../../../lib/event_calendar/calendar'
 
 describe ::EventCalendar::Calendar do
-  let(:calendar) { ::EventCalendar::Calendar.new(Date.parse('2013-01-01')) }
+  let(:calendar) { ::EventCalendar::Calendar.new(base_date) }
+  let(:base_date) { Date.parse('2013-01-01') }
 
   describe '#start_on' do
     subject { calendar.start_on }
@@ -15,8 +16,19 @@ describe ::EventCalendar::Calendar do
     it { should == Date.parse('2013-02-02') }
   end
 
+  describe '#base_date' do
+    subject { calendar.base_date }
+    it { should == base_date }
+  end
+
+  describe '#dates' do
+    subject { calendar.dates }
+    it { should respond_to(:each) }
+    it { should have(7*5).dates }
+  end
+
   describe '#fetch_events' do
-    subject { calendar.fetch_events }
+    subject { calendar.events }
 
     context '1 subclass for ::EventCalendar::Event' do
       context '3 events for calendar range and 2 is out of the range' do
@@ -33,6 +45,11 @@ describe ::EventCalendar::Calendar do
           end
         end
         it { should have(3).events }
+
+        describe '#events_on(date)' do
+          subject { calendar.events_on(Date.parse('2013-01-08')) }
+          it { should have(1).events }
+        end
 
         context 'another subclass for ::EventCalendar::Event' do
           context 'has 2 events in the range' do

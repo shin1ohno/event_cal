@@ -1,0 +1,6 @@
+.calendar.monthly
+  %h1= l calendar.base_date, :format => :calendar_title
+  %ul.dates
+    - (calendar.start_on .. calendar.start_on + 6.days).each do |date|
+      %li.date.wday_header= date.day
+    = render :partial => 'event_calendar/date', :collection => calendar.dates, :locals => { :calendar => calendar }

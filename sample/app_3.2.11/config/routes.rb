@@ -1,4 +1,6 @@
 App3211::Application.routes.draw do
+  resources :my_calendar
+  root :to => 'my_calendar#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
