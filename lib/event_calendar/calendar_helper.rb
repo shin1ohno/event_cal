@@ -16,9 +16,10 @@ module ::EventCalendar::CalendarHelper
 
   def render_monthly(calendar)
     render(
-      :partial => 'event_calendar/calendar',
-      :format => :html,
-      :locals => { :calendar => calendar },
+      { :partial => 'event_calendar/calendar',
+        :format => :html,
+        :locals => { :calendar => calendar },
+      }
     )
   end
 end

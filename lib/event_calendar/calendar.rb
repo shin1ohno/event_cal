@@ -1,12 +1,13 @@
 require 'event_calendar/event'
 
 class EventCalendar::Calendar
-  attr :base_date, :start_on, :end_on, :events
+  attr_accessor :base_date, :start_on, :end_on, :events
 
   def initialize(date = Date.today)
     @base_date = date
-    @start_on = date.beginning_of_month.beginning_of_week(:sunday)
-    @end_on = date.end_of_month.end_of_week(:sunday)
+    # TODO: use beginning_of_week(:sunday) after migrates to rails 3.2
+    @start_on = date.beginning_of_month.beginning_of_week.advance(:days => -1)
+    @end_on = date.end_of_month.end_of_week.advance(:days => -1)
     fetch_events
   end
 
