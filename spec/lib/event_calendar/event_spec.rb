@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative '../../../lib/event_calendar/event'
+require_relative '../../../lib/event_calendar/calendar'
 
 require 'active_support/core_ext'
 
@@ -17,10 +17,13 @@ describe ::EventCalendar::Event do
   end
 
   describe '.fetch_events' do
-    subject { ::EventCalendar::Event.fetch_events(start_on, end_on) }
+    subject { ::EventCalendar::Event.fetch_events(calendar) }
     let(:start_on) { Date.parse('2013-01-01') }
     let(:end_on) { Date.parse('2013-01-31') }
+    let(:calendar) { ::EventCalendar::Calendar.new() }
     before do
+      calendar.stub(:start_on => start_on)
+      calendar.stub(:end_on => end_on)
       ::EventCalendar::Event.stub(:all).and_return {
         [ ::EventCalendar::Event.new(Date.parse('2013-01-08')),
           ::EventCalendar::Event.new(Date.parse('2013-01-18')),

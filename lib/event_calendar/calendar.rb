@@ -12,7 +12,7 @@ class EventCalendar::Calendar
 
   def fetch_events
     @events = ::EventCalendar::Event.subclasses.map { |klass|
-      klass.fetch_events(@start_on, @end_on)
+      klass.fetch_events(self)
       }.flatten
   end
 
