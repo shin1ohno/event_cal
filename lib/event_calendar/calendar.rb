@@ -10,6 +10,10 @@ class EventCalendar::Calendar
     fetch_events
   end
 
+  def dates
+    (@start_on..@end_on).to_a
+  end
+
   def fetch_events
     @events = ::EventCalendar::Event.subclasses.map { |klass|
       klass.fetch_events(self)

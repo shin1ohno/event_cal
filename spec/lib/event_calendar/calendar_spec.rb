@@ -21,6 +21,12 @@ describe ::EventCalendar::Calendar do
     it { should == base_date }
   end
 
+  describe '#dates' do
+    subject { calendar.dates }
+    it { should respond_to(:each) }
+    it { should have(7*5).dates }
+  end
+
   describe '#fetch_events' do
     subject { calendar.events }
 
