@@ -4,7 +4,7 @@ class OrderEvent < ::EventCalendar::Event
   attr :order
 
   def initialize(order)
-    @held_on = order.delivery_on
+    @held_on = super(order.delivery_on)
     @name = order.product_name + '_' + order.tenant_name
     @order = order
   end
