@@ -25,12 +25,6 @@ describe ::EventCalendar::CalendarHelper do
     end
   end
 
-  describe '#wdays_row_for(calendar)' do
-    subject { helper.wdays_row_for(calendar) }
-    let(:calendar) { ::EventCalendar::Calendar.new }
-    it { should have(7).items }
-  end
-
   describe '#render_monthly' do
     subject { render_monthly(calendar) }
     let(:calendar) { ::EventCalendar::Calendar.new }

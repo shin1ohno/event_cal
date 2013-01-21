@@ -1,4 +1,4 @@
-require 'event_calendar/railtie'
+require 'event_calendar/engine'
 
 module EventCalendar
 end
