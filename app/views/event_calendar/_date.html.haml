@@ -6,4 +6,4 @@
   - if event_for_date.present?
     %ul.events
       - event_for_date.each do |event|
-        %li.event= render "event_calendar/#{event.class.to_s.underscore}"
+        %li.event= render "event_calendar/#{event.class.to_s.underscore}", :event => event
