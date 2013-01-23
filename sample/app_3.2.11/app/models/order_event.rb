@@ -5,7 +5,7 @@ class OrderEvent < ::EventCalendar::Event
 
   def initialize(order)
     @held_on = super(order.delivery_on)
-    @name = order.product_name + '_' + order.tenant_name
+    @name = order.tenant_name
     @order = order
   end
 

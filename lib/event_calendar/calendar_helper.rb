@@ -22,4 +22,13 @@ module ::EventCalendar::CalendarHelper
       }
     )
   end
+  def render_event_details(events)
+    render(
+      { :partial => 'event_calendar/event_details',
+        :format => :html,
+        :locals => { :events => events }
+      }
+    )
+  end
+
 end

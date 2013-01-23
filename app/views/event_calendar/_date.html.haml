@@ -1,6 +1,6 @@
 - event_for_date = calendar.events_on(date)
 
-%li.date{ :class => hightlight_classes(date, calendar).join(' ') }
+%li.date{ :class => hightlight_classes(date, calendar).join(' '), :data => { :date => date } }
   .header
     %span{ :class => wday_class_for(date) }= l date, :format => :calendar_cell
   - if event_for_date.present?
