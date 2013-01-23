@@ -18,9 +18,15 @@ group :development do
   gem 'rails-sh'
   gem 'tork'
   gem 'rb-fsevent', '~> 0.9.1'
+  gem 'guard-shell'
 end
 
 group :test do
   gem 'response_code_matchers'
   gem 'timecop'
+  gem 'libv8', '~> 3.11.8'
+  gem 'therubyracer', platforms: :ruby
+  gem 'jasmine'
+  gem 'em-websocket'
+  gem 'guard-jasmine-headless-webkit'
 end

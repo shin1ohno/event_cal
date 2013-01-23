@@ -1,4 +1,6 @@
 .bundle/
+.jhw-cache
+jhw.*.html
 log/*.log
 pkg/
 tmp/
