@@ -3,4 +3,4 @@ ja:
     formats:
       calendar_cell: ! '%d'
       calendar_row: ! '%a'
-      calendar_title: ! '%B'
+      calendar_title: ! '%m月'
