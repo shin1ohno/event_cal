@@ -1,8 +1,7 @@
 require 'event_calendar/event'
-require 'event_calendar/calendar_owner'
 
 class EventCalendar::Calendar
-  attr_accessor :base_date, :start_on, :end_on, :events, :owner
+  attr_accessor :base_date, :start_on, :end_on, :events
 
   def initialize(date = Date.today)
     @base_date = date
