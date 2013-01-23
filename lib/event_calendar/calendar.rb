@@ -10,7 +10,6 @@ class EventCalendar::Calendar
     @end_on = @base_date.end_of_month.end_of_week.advance(:days => -1)
 
     fetch_events
-    self
   end
 
   def dates
