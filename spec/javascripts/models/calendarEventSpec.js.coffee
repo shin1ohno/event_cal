@@ -1,4 +1,6 @@
 describe 'CalendarEvent', () ->
+  afterEach () -> CalendarEvent.destroyAll()
+
   describe 'activateAllEventsOn', () ->
     it 'activates all event on specific date', () ->
       date = '2013-01-01'

@@ -1,4 +1,6 @@
 describe 'CalendarDate', () ->
+  afterEach () -> CalendarDate.destroyAll()
+
   describe 'deactivateAllDates', () ->
     it 'deactivate all dates', () ->
       date = CalendarDate.create(date: '2013-01-01', active: true)
