@@ -27,6 +27,32 @@ describe ::EventCalendar::Calendar do
     it { should have(7*5).dates }
   end
 
+  describe 'options for initializer' do
+    before { Timecop.freeze('2013-01-01') }
+    after { Timecop.return }
+    describe 'setting owner' do
+      context 'given a option hash' do
+        subject { calendar.owner }
+        let(:user) { FactoryGirl.build(:user) }
+        let(:calendar) { ::EventCalendar::Calendar.new(owner: user) }
+        it { should == user }
+        specify { calendar.base_date.should == Date.today }
+      end
+      context 'given a date and option hash' do
+        subject { calendar.owner }
+        let(:user) { FactoryGirl.build(:user) }
+        let(:calendar) { ::EventCalendar::Calendar.new(Date.today, owner: user) }
+        it { should == user }
+        specify { calendar.base_date.should == Date.today }
+      end
+    end
+    context 'geven a invalid option' do
+      it 'raises ArgumentError' do
+        expect{ ::EventCalendar::Calendar.new('invalid argument') }.to raise_error(ArgumentError)
+      end
+    end
+  end
+
   describe '#fetch_events' do
     subject { calendar.events }
 
