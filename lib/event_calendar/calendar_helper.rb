@@ -14,6 +14,15 @@ module ::EventCalendar::CalendarHelper
     classes
   end
 
+  def previous_month_navpath(calendar)
+  end
+
+  def next_month_navpath(calendar)
+  end
+
+  def today_navpath(calendar)
+  end
+
   def render_monthly(calendar)
     render(
       { :partial => 'event_calendar/calendar',
@@ -22,6 +31,7 @@ module ::EventCalendar::CalendarHelper
       }
     )
   end
+
   def render_event_details(events)
     render(
       { :partial => 'event_calendar/event_details',
@@ -30,5 +40,4 @@ module ::EventCalendar::CalendarHelper
       }
     )
   end
-
 end

@@ -15,7 +15,7 @@ class OrderEvent < ::EventCalendar::Event
     events = []
     20.times do |i|
       order = user.orders.new(
-        :delivery_on => Date.today + (((-1) ** i) * i).days,
+        :delivery_on => Date.today + (((-1) ** i) * i * 2).days,
         :product_name => "Product_#{i}",
         :tenant_name => "Tenant_#{i}"
       )

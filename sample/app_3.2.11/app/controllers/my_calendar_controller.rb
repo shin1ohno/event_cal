@@ -6,6 +6,10 @@ class MyCalendarController < ApplicationController
   respond_to :html
   def index
     @calendar = ::EventCalendar::Calendar.new(Date.today)
-    respond_with @calendar
+  end
+
+  def show
+    date = Date.parse("#{params[:year]}-#{params[:month]}-#{params[:date]}")
+    @calendar = ::EventCalendar::Calendar.new(date)
   end
 end
