@@ -6,6 +6,6 @@ class CalendarEvent extends Spine.Model
       event.updateAttributes(active: true)
 
   @deactivateAllEvents: () ->
-    CalendarEvent.each( (event) -> event.updateAttributes(active: false) )
+    CalendarEvent.each((event) -> event.updateAttributes(active: false))
 
 window.CalendarEvent = CalendarEvent

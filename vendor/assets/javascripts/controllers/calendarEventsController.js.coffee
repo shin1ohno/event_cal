@@ -15,4 +15,5 @@ class CalendarEventsController extends Spine.Module
       if event.active == false
         event.element.hide()
     )
+
 window.CalendarEventsController = CalendarEventsController

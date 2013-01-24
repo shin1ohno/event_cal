@@ -7,6 +7,7 @@ class CalendarApplication
     for element, controller of calendarElements
       for el in $(element)
         new controller($(el))
+
 window.CalendarApplication = CalendarApplication
 
 jQuery ($) -> CalendarApplication.initialize()
