@@ -5,7 +5,9 @@ module EventCalendar
     class Engine < ::Rails::Engine
       initializer 'event_calendar.setup_view_helpers' do |app|
         app.config.to_prepare do
-          ActionController::Base.send(:helper, ::EventCalendar::CalendarHelper)
+          # after migrating to 3.2 a line below works
+          # ActionController::Base.send(:helper, ::EventCalendar::CalendarHelper)
+          ActionView::Base.send(:include, ::EventCalendar::CalendarHelper)
         end
       end
     end
