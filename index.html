@@ -18,10 +18,6 @@
         <h1>Event Calendar</h1>
         <p>Calendar that easy to use, easy to customise</p>
 
-        <div>
-          <img src='https://raw.github.com/shin1ohno/event_cal/gh-pages/images/sp_sample.png' width = '80%' height= 'auto'>
-        </div>
-
         <p class="view"><a href="https://github.com/shin1ohno/event_cal">View the Project on GitHub <small>shin1ohno/event_cal</small></a></p>
 
 
@@ -36,6 +32,8 @@
 
 <p>EventCalendar is a calendar with events on it.</p>
 
+<p><img src="https://raw.github.com/shin1ohno/event_cal/gh-pages/images/sp_sample.png" width="35%" height="auto"></p>
+
 <p>You can easily</p>
 
 <ul>
@@ -48,22 +46,86 @@
 </pre></div>
 
 <ol>
-<li>create calendar instance in controller</li>
+<li>create calendar instance in controller and call <code>render_monthly(@calendar)</code> in view. simple sample code is below. <strong><em>only with this step, you basically can get calendar view</em></strong>
+</li>
 <li>create event model that extends ::EventCalendar::Events</li>
-<li>create partial for each event</li>
+<li>create partial for each event. with sptep 2 and 3 it's automatically shown in calendar view</li>
 </ol><p><code>sample/app_***</code> directory contains sample rails application that shows how you do. This sample runs as normal rails application.</p>
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">MyCalendarController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="vi">@calendar</span> <span class="o">=</span> <span class="o">::</span><span class="no">EventCalendar</span><span class="o">::</span><span class="no">Calendar</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Date</span><span class="o">.</span><span class="n">today</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="n">date</span> <span class="o">=</span> <span class="no">Date</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">"</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:year</span><span class="o">]</span><span class="si">}</span><span class="s2">-</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:month</span><span class="o">]</span><span class="si">}</span><span class="s2">-</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:date</span><span class="o">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="vi">@calendar</span> <span class="o">=</span> <span class="o">::</span><span class="no">EventCalendar</span><span class="o">::</span><span class="no">Calendar</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<div class="highlight"><pre><span class="nc">.calendar_view</span>
+  <span class="p">=</span> <span class="n">render_monthly</span><span class="p">(</span><span class="vi">@calendar</span><span class="p">)</span>
+  <span class="p">=</span> <span class="n">render_event_details</span><span class="p">(</span><span class="vi">@calendar</span><span class="o">.</span><span class="n">events</span><span class="p">)</span> <span class="c1"># if you need event details view</span>
+</pre></div>
+
+<div class="highlight"><pre><span class="c1"># typically, you may want to draw routes like this</span>
+<span class="no">App3211</span><span class="o">::</span><span class="no">Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
+  <span class="n">resources</span> <span class="ss">:my_calendar</span> <span class="k">do</span>
+    <span class="n">collection</span> <span class="k">do</span>
+      <span class="n">get</span> <span class="s1">':year/:month/:date'</span> <span class="o">=&gt;</span> <span class="s1">'my_calendar#show'</span><span class="p">,</span> <span class="ss">:constraints</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:year</span> <span class="o">=&gt;</span> <span class="sr">/\d{4}/</span><span class="p">,</span> <span class="ss">:month</span> <span class="o">=&gt;</span> <span class="sr">/\d{1,2}/</span><span class="p">,</span> <span class="ss">:day</span> <span class="o">=&gt;</span> <span class="sr">/\d{1,2}/</span> <span class="p">}</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>you can use default style for 7days * 4~5 weeks calendar</p>
+
+<div class="highlight"><pre><span class="c">/*</span>
+<span class="c"> in application.css... add sprockets manifest like</span>
+<span class="c"> *= require_self</span>
+<span class="c"> *= require event_calendar</span>
+<span class="c"> *= require_tree .</span>
+<span class="c"> */</span>
+</pre></div>
+
+<p>you can use basic event detail selector implemented in JavaScript with <a href="http://spinejs.com">Spine.js</a></p>
+
+<div class="highlight"><pre><span class="c1">// in application.js... add sprockets manifest like</span>
+<span class="c1">//= require jquery</span>
+<span class="c1">//= require jquery_ujs</span>
+<span class="c1">//= require event_calendar</span>
+<span class="c1">//= require_tree .</span>
+<span class="c1">// and then initialize like this...</span>
+
+<span class="nx">jQuery</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">baseDatelement</span><span class="p">;</span>
+  <span class="nx">CalendarApplication</span><span class="p">.</span><span class="nx">initialize</span><span class="p">();</span>
+  <span class="nx">baseDatelement</span> <span class="o">=</span> <span class="nx">CalendarDate</span><span class="p">.</span><span class="nx">findByAttribute</span><span class="p">(</span><span class="s1">'date'</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.calendar'</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'base-date'</span><span class="p">)).</span><span class="nx">element</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">baseDatelement</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">'has_events'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">baseDatelement</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
 
 <h2>Develop EventCalendar</h2>
 
-<p>Run</p>
+<h3>running tests</h3>
 
-<pre><code>bundle
-bundle exec tork
-</code></pre>
+<ul>
+<li>Ruby code is tested by rspec</li>
+<li>JavaScript code is tested by jasmine</li>
+<li>For auto testing, I use <a href="https://github.com/sunaku/tork">tork</a> for ruby code and <a href="https://github.com/johnbintz/guard-jasmine-headless-webkit">Guard support for jasmine-headless-webkit</a> for JavaScript code</li>
+</ul><p><code>bundle</code> first. <code>bundle exec tork</code> then hit a to run all rspec examples. <code>bundle exec guard</code> then hit return to run all jasmine expamples</p>
 
-<p>then hit a to run all the tests.</p>
+<h2>Thanks</h2>
 
-<h2>License</h2>
+<ul>
+<li>
+<a href="https://github.com/satoship">Takada Satoshi</a> for giving many great ideas for implementation</li>
+<li>
+<a href="https://github.com/tikeda">Takuji Ikeda</a> for giving sweet design</li>
+</ul><h2>License</h2>
 
 <p>This project uses MIT-LICENSE.</p>
       </section>
