@@ -1,0 +1,25 @@
+.calendar {
+  .event.birthday_event {
+    background-color: red;
+  }
+}
+
+.event_details {
+  li {
+    padding: 1em 1em 1em 1em;
+  }
+  li.birthday_event {
+    &:before {
+      background-color: red;
+    }
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+article {
+  min-height: 420px;
+}
