@@ -22,6 +22,7 @@ group :development do
 end
 
 group :test do
+  gem 'rspec', :require => false
   gem 'response_code_matchers'
   gem 'timecop'
   gem 'libv8', '~> 3.11.8'

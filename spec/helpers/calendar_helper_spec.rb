@@ -32,7 +32,7 @@ describe ::EventCalendar::CalendarHelper do
     before do
       class HolidayEvent < ::EventCalendar::Event
         def self.all
-          [ self.new(Date.parse('2013-01-01')) ]
+          [self.new(Date.parse('2013-01-01'))]
         end
       end
     end
@@ -49,7 +49,20 @@ describe ::EventCalendar::CalendarHelper do
 
   describe '#render_monthly' do
     subject { render_monthly(calendar) }
-    let(:calendar) { ::EventCalendar::Calendar.new }
-    xit { should =~ /<div class='calendar monthly'>/ }
+    let(:calendar) { ::EventCalendar::Calendar.new(Date.parse('2013-01-01')) }
+    before do
+      class HolidayEvent < ::EventCalendar::Event
+        def self.all
+          []
+        end
+      end
+
+      class Birthday < ::EventCalendar::Event
+        def self.all
+          []
+        end
+      end
+    end
+    it { should =~ /<div class='calendar monthly'/ }
   end
 end

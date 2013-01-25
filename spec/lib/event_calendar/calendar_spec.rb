@@ -6,14 +6,14 @@ describe ::EventCalendar::Calendar do
   let(:calendar) { ::EventCalendar::Calendar.new(base_date) }
   let(:base_date) { Date.parse('2013-01-01') }
 
+  before { Timecop.freeze('2013-01-01') }
+  after { Timecop.return }
+
   describe 'initializer' do
     subject { ::EventCalendar::Calendar.new() }
     it { should be_a_kind_of ::EventCalendar::Calendar }
 
     describe 'options for initializer' do
-      before { Timecop.freeze('2013-01-01') }
-      after { Timecop.return }
-
       describe 'setting owner' do
         context 'given a option hash' do
           subject { calendar.owner }
@@ -63,10 +63,15 @@ describe ::EventCalendar::Calendar do
 
   describe '#fetch_events' do
     subject { calendar.events }
-
     context '1 subclass for ::EventCalendar::Event' do
       context '3 events for calendar range and 2 is out of the range' do
         before do
+          class HolidayEvent < ::EventCalendar::Event
+            def self.all
+              []
+            end
+          end
+
           class Birthday < ::EventCalendar::Event
             def self.all
               [ self.new(Date.parse('2013-01-08')),
@@ -78,6 +83,7 @@ describe ::EventCalendar::Calendar do
             end
           end
         end
+        it { pp calendar.events }
         it { should have(3).events }
 
         describe '#events_on(date)' do
@@ -88,7 +94,7 @@ describe ::EventCalendar::Calendar do
         context 'another subclass for ::EventCalendar::Event' do
           context 'has 2 events in the range' do
             before do
-              class Holyday < ::EventCalendar::Event
+              class HolidayEvent < ::EventCalendar::Event
                 def self.all
                   [ self.new(Date.parse('2013-01-01')),
                     self.new(Date.parse('2013-01-14'))
