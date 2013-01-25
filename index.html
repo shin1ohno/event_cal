@@ -1,58 +1,96 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Event Calendar by shin1ohno</title>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <title>Event Calendar by shin1ohno</title>
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Event Calendar</h1>
-        <p>Calendar that easy to use, easy to customise</p>
+  <link rel="stylesheet" href="stylesheets/styles.css">
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>Event Calendar</h1>
+      <p>Calendar that easy to use, easy to customise</p>
 
-        <p class="view"><a href="https://github.com/shin1ohno/event_cal">View the Project on GitHub <small>shin1ohno/event_cal</small></a></p>
+      <p class="view">
+        <a href="https://github.com/shin1ohno/event_cal">
+          View the Project on GitHub
+          <small>shin1ohno/event_cal</small>
+        </a>
+      </p>
 
+      <ul>
+        <li>
+          <a href="https://github.com/shin1ohno/event_cal/zipball/master">
+            Download <strong>ZIP File</strong>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/shin1ohno/event_cal/tarball/master">
+            Download <strong>TAR Ball</strong>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/shin1ohno/event_cal">
+            View On
+            <strong>GitHub</strong>
+          </a>
+        </li>
+      </ul>
+    </header>
+    <section>
+      <h1>EventCalendar</h1>
 
+      <p>EventCalendar is a calendar with events on it.</p>
+
+      <div style="display: inline-block; float: left; width:35%;">
+        <img src="https://raw.github.com/shin1ohno/event_cal/gh-pages/images/sp_sample.png" width="100%" height="auto"></div>
+
+      <div width = "60%" style="display: inline-block; float: right;">
+        <p>You can easily</p>
         <ul>
-          <li><a href="https://github.com/shin1ohno/event_cal/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/shin1ohno/event_cal/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/shin1ohno/event_cal">View On <strong>GitHub</strong></a></li>
+          <li>create and display many kinds of events</li>
+          <li>customize how events displayed</li>
+          <li>integrate events with existing model</li>
         </ul>
-      </header>
-      <section>
-        <h1>EventCalendar</h1>
+      </div>
 
-<p>EventCalendar is a calendar with events on it.</p>
+      <div style='clear: both'></div>
 
-<p><img src="https://raw.github.com/shin1ohno/event_cal/gh-pages/images/sp_sample.png" width="35%" height="auto"></p>
+      <hr>
 
-<p>You can easily</p>
+      <h2>Use EventCalendar</h2>
 
-<ul>
-<li>create and display many kinds of events</li>
-<li>customize how events displayed</li>
-<li>integrate events with existing model</li>
-</ul><h2>Use EventCalendar</h2>
+      <div class="highlight">
+        <pre><span class="n">gem</span> <span class="s1">'event_calendar'</span><span class="p">,</span> <span class="n">github</span><span class="p">:</span> <span class="s1">'shin1ohno/event_calendar'</span>
+</pre>
+      </div>
 
-<div class="highlight"><pre><span class="n">gem</span> <span class="s1">'event_calendar'</span><span class="p">,</span> <span class="n">github</span><span class="p">:</span> <span class="s1">'shin1ohno/event_calendar'</span>
-</pre></div>
+      <ol>
+        <li>
+          create calendar instance in controller and call
+          <code>render_monthly(@calendar)</code>
+          in view. simple sample code is below.
+          <strong><em>only with this step, you basically can get calendar view</em></strong> 
+        </li>
+        <li>create event model that extends ::EventCalendar::Events</li>
+        <li>
+          create partial for each event. with sptep 2 and 3 it's automatically shown in calendar view
+        </li>
+      </ol>
+      <p>
+        <code>sample/app_***</code>
+        directory contains sample rails application that shows how you do. This sample runs as normal rails application.
+      </p>
 
-<ol>
-<li>create calendar instance in controller and call <code>render_monthly(@calendar)</code> in view. simple sample code is below. <strong><em>only with this step, you basically can get calendar view</em></strong>
-</li>
-<li>create event model that extends ::EventCalendar::Events</li>
-<li>create partial for each event. with sptep 2 and 3 it's automatically shown in calendar view</li>
-</ol><p><code>sample/app_***</code> directory contains sample rails application that shows how you do. This sample runs as normal rails application.</p>
-
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">MyCalendarController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+      <div class="highlight">
+        <pre><span class="k">class</span> <span class="nc">MyCalendarController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="k">def</span> <span class="nf">index</span>
     <span class="vi">@calendar</span> <span class="o">=</span> <span class="o">::</span><span class="no">EventCalendar</span><span class="o">::</span><span class="no">Calendar</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Date</span><span class="o">.</span><span class="n">today</span><span class="p">)</span>
   <span class="k">end</span>
@@ -62,14 +100,18 @@
     <span class="vi">@calendar</span> <span class="o">=</span> <span class="o">::</span><span class="no">EventCalendar</span><span class="o">::</span><span class="no">Calendar</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</pre></div>
+</pre>
+      </div>
 
-<div class="highlight"><pre><span class="nc">.calendar_view</span>
+      <div class="highlight">
+        <pre><span class="nc">.calendar_view</span>
   <span class="p">=</span> <span class="n">render_monthly</span><span class="p">(</span><span class="vi">@calendar</span><span class="p">)</span>
   <span class="p">=</span> <span class="n">render_event_details</span><span class="p">(</span><span class="vi">@calendar</span><span class="o">.</span><span class="n">events</span><span class="p">)</span> <span class="c1"># if you need event details view</span>
-</pre></div>
+</pre>
+      </div>
 
-<div class="highlight"><pre><span class="c1"># typically, you may want to draw routes like this</span>
+      <div class="highlight">
+        <pre><span class="c1"># typically, you may want to draw routes like this</span>
 <span class="no">App3211</span><span class="o">::</span><span class="no">Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
   <span class="n">resources</span> <span class="ss">:my_calendar</span> <span class="k">do</span>
     <span class="n">collection</span> <span class="k">do</span>
@@ -77,21 +119,28 @@
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</pre></div>
+</pre>
+      </div>
 
-<p>you can use default style for 7days * 4~5 weeks calendar</p>
+      <p>you can use default style for 7days * 4~5 weeks calendar</p>
 
-<div class="highlight"><pre><span class="c">/*</span>
-<span class="c"> in application.css... add sprockets manifest like</span>
-<span class="c"> *= require_self</span>
-<span class="c"> *= require event_calendar</span>
-<span class="c"> *= require_tree .</span>
-<span class="c"> */</span>
-</pre></div>
+      <div class="highlight">
+        <pre><span class="c">/*</span>
+<span class="c">in application.css... add sprockets manifest like</span>
+<span class="c">*= require_self</span>
+<span class="c">*= require event_calendar</span>
+<span class="c">*= require_tree .</span>
+<span class="c">*/</span>
+</pre>
+      </div>
 
-<p>you can use basic event detail selector implemented in JavaScript with <a href="http://spinejs.com">Spine.js</a></p>
+      <p>
+        you can use basic event detail selector implemented in JavaScript with
+        <a href="http://spinejs.com">Spine.js</a>
+      </p>
 
-<div class="highlight"><pre><span class="c1">// in application.js... add sprockets manifest like</span>
+      <div class="highlight">
+        <pre><span class="c1">// in application.js... add sprockets manifest like</span>
 <span class="c1">//= require jquery</span>
 <span class="c1">//= require jquery_ujs</span>
 <span class="c1">//= require event_calendar</span>
@@ -106,35 +155,63 @@
     <span class="k">return</span> <span class="nx">baseDatelement</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
   <span class="p">}</span>
 <span class="p">});</span>
-</pre></div>
+</pre>
+      </div>
 
-<h2>Develop EventCalendar</h2>
+      <h2>Develop EventCalendar</h2>
 
-<h3>running tests</h3>
+      <h3>running tests</h3>
 
-<ul>
-<li>Ruby code is tested by rspec</li>
-<li>JavaScript code is tested by jasmine</li>
-<li>For auto testing, I use <a href="https://github.com/sunaku/tork">tork</a> for ruby code and <a href="https://github.com/johnbintz/guard-jasmine-headless-webkit">Guard support for jasmine-headless-webkit</a> for JavaScript code</li>
-</ul><p><code>bundle</code> first. <code>bundle exec tork</code> then hit a to run all rspec examples. <code>bundle exec guard</code> then hit return to run all jasmine expamples</p>
+      <ul>
+        <li>Ruby code is tested by rspec</li>
+        <li>JavaScript code is tested by jasmine</li>
+        <li>
+          For auto testing, I use
+          <a href="https://github.com/sunaku/tork">tork</a>
+          for ruby code and
+          <a href="https://github.com/johnbintz/guard-jasmine-headless-webkit">Guard support for jasmine-headless-webkit</a>
+          for JavaScript code
+        </li>
+      </ul>
+      <p>
+        <code>bundle</code>
+        first.
+        <code>bundle exec tork</code>
+        then hit a to run all rspec examples.
+        <code>bundle exec guard</code>
+        then hit return to run all jasmine expamples
+      </p>
 
-<h2>Thanks</h2>
+      <h2>Thanks</h2>
 
-<ul>
-<li>
-<a href="https://github.com/satoship">Takada Satoshi</a> for giving many great ideas for implementation</li>
-<li>
-<a href="https://github.com/tikeda">Takuji Ikeda</a> for giving sweet design</li>
-</ul><h2>License</h2>
+      <ul>
+        <li>
+          <a href="https://github.com/satoship">Takada Satoshi</a>
+          for giving many great ideas for implementation
+        </li>
+        <li>
+          <a href="https://github.com/tikeda">Takuji Ikeda</a>
+          for giving sweet design
+        </li>
+      </ul>
+      <h2>License</h2>
 
-<p>This project uses MIT-LICENSE.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/shin1ohno">shin1ohno</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+      <p>This project uses MIT-LICENSE.</p>
+    </section>
+    <footer>
+      <p>
+        This project is maintained by
+        <a href="https://github.com/shin1ohno">shin1ohno</a>
+      </p>
+      <p>
+        <small>
+          Hosted on GitHub Pages &mdash; Theme by
+          <a href="https://github.com/orderedlist">orderedlist</a>
+        </small>
+      </p>
+    </footer>
+  </div>
+  <script src="javascripts/scale.fix.js"></script>
+
+</body>
 </html>
