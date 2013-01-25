@@ -20,6 +20,8 @@ RSpec.configure do |config|
   config.include ActiveSupport::Testing::Assertions
   config.include ResponseCodeMatchers
 
+  FactoryGirl.find_definitions
+
   config.render_views = false
 
   config.order = 'random'
