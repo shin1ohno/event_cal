@@ -30,5 +30,5 @@ group :test do
   gem 'therubyracer', platforms: :ruby
   gem 'jasmine'
   gem 'em-websocket'
-  gem 'guard-jasmine-headless-webkit'
+  gem 'guard-jasmine-headless-webkit', :branch => 'travis-test'
 end
