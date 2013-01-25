@@ -88,20 +88,15 @@ jQuery(function($) {
 - JavaScript code is tested by jasmine
 - For auto testing, I use [tork](https://github.com/sunaku/tork) for ruby code and [Guard support for jasmine-headless-webkit](https://github.com/johnbintz/guard-jasmine-headless-webkit) for JavaScript code
 
-Run
+Run ```bundle``` first
 
-```
-bundle
-bundle exec tork
-bundle exec guard
-```
-
-then hit a to run all the tests.
+```bundle exec tork``` then hit a to run all rspec examples
+```bundle exec guard``` then hit return to run all jasmine expamples
 
 ## Thanks ##
 
-- [Takada Satoshi](https://github.com/satoship) gives many great ideas for implementation
-- [Takuji Ikeda](https://github.com/tikeda) gives sweet design
+- [Takada Satoshi](https://github.com/satoship) for giving many great ideas for implementation
+- [Takuji Ikeda](https://github.com/tikeda) for giving sweet design
 
 ## License ##
 
