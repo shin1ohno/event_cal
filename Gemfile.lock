@@ -202,10 +202,10 @@ DEPENDENCIES
   guard-shell
   haml-rails
   jasmine
+  jasmine-headless-webkit
   libv8 (~> 3.11.8)
   pry
   rails-sh
-  rake
   rb-fsevent (~> 0.9.1)
   response_code_matchers
   rspec
