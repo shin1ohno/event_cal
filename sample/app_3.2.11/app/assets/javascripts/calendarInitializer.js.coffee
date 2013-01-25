@@ -1,3 +1,4 @@
 jQuery ($) ->
   CalendarApplication.initialize()
-  CalendarDate.findByAttribute('date', $('.calendar').data('base-date')).element.click()
+  baseDatelement = CalendarDate.findByAttribute('date', $('.calendar').data('base-date')).element
+  baseDatelement.click() if baseDatelement.hasClass('has_events')
