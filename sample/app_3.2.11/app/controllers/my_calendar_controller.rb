@@ -3,7 +3,6 @@ require 'order_event'
 require 'birthday_event'
 
 class MyCalendarController < ApplicationController
-  respond_to :html
   def index
     @calendar = ::EventCalendar::Calendar.new(Date.today)
   end
