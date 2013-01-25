@@ -2,7 +2,7 @@
 
 %li.date{ :class => hightlight_classes(date, calendar).join(' '), :data => { :date => date } }
   .header
-    %span{ :class => wday_class_for(date) }= l date, :format => :calendar_cell
+    %span{ :class => wday_class_for(date) }= date.strftime('%-d')
   - if event_for_date.present?
     %ul.events
       - event_for_date.each do |event|

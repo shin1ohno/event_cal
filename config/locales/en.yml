@@ -1,6 +1,0 @@
-en:
-  date:
-    formats:
-      calendar_cell: ! '%d'
-      calendar_row: ! '%a'
-      calendar_title: ! '%B'
