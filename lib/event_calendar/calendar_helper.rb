@@ -14,13 +14,13 @@ module ::EventCalendar::CalendarHelper
     classes
   end
 
-  def previous_month_navpath(calendar)
+  def previous_month_path(calendar)
   end
 
-  def next_month_navpath(calendar)
+  def next_month_path(calendar)
   end
 
-  def today_navpath(calendar)
+  def today_path(calendar)
   end
 
   def render_monthly(calendar)
