@@ -230,8 +230,20 @@ $line_height: 1.5 !default;
     border-bottom: $calendar_border_attributes;
     color: $green;
     font-weight: bold;
-    padding: 12px 0 12px 12px;
+    padding: 1em 0 1em 1em;
     position: relative;
+    text-indent: 0.7em;
+    &:before {
+      @include position(absolute, 1.6em 0 0 0);
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius : 5px;
+      background: $green;
+      display: inline-block;
+      margin: -2px 0.5px 0 0.5px;
+      text-indent: $infinity;
+    }
     .event_name {
       font-weight: bold;
     }
