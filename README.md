@@ -1,3 +1,5 @@
+![](https://travis-ci.org/shin1ohno/event_cal.png?branch=master)
+
 # EventCalendar #
 
 EventCalendar is a calendar with events on it.
