@@ -2,6 +2,8 @@
 
 EventCalendar is a calendar with events on it.
 
+<img src='https://raw.github.com/shin1ohno/event_cal/gh-pages/images/sp_sample.png' width = '35%' height= 'auto'>
+
 You can easily
 
 - create and display many kinds of events
