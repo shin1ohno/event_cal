@@ -5,6 +5,8 @@ source "https://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 gem 'haml-rails'
+gem 'rake'
+gem 'rspec'
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or
@@ -22,7 +24,6 @@ group :development do
 end
 
 group :test do
-  gem 'rspec', :require => false
   gem 'response_code_matchers'
   gem 'timecop'
   gem 'libv8', '~> 3.11.8'
