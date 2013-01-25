@@ -6,10 +6,11 @@ rvm:
   - "1.9.2"
   - "1.9.3"
   - "rbx-19mode"
+  - "ruby-head"
 
 env:
   - "SKIP_JASMINE=true"
-  - "FAKE"
+  - "ALL_IN"
 
 before_install:
   - "export DISPLAY=:99.0"
@@ -26,8 +27,12 @@ matrix:
     - rvm: "rbx-19mode"
       env: "SKIP_JASMINE=true"
     - rvm: "2.0"
-      env: "FAKE"
+      env: "ALL_IN"
     - rvm: "1.9.2"
-      env: "FAKE"
+      env: "ALL_IN"
     - rvm: "1.9.3"
-      env: "FAKE"
+      env: "ALL_IN"
+    - rvm: "ruby-head"
+      env: "SKIP_JASMINE=true"
+  allow_failures:
+    - rvm: "ruby-head"
