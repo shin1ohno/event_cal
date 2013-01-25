@@ -27,6 +27,7 @@ class EventCalendar::Calendar
   end
 
   private
+
   def parse_initializer_arguments(date, options)
     if date.class == Date
       @base_date = date
