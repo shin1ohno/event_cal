@@ -83,7 +83,6 @@ describe ::EventCalendar::Calendar do
             end
           end
         end
-        it { pp calendar.events }
         it { should have(3).events }
 
         describe '#events_on(date)' do
