@@ -1,4 +1,4 @@
 %ul.event_details.calendar
   - events.each do |event|
-    %li.event_detail{ :data => { :'event-date' => event.held_on }}
+    %li{ :class  => "event_detail #{event.class.to_s.underscore}", :data => { :'event-date' => event.held_on }}
       = render "event_calendar/#{event.class.to_s.underscore}_detail", :event => event
