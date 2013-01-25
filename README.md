@@ -84,14 +84,13 @@ jQuery(function($) {
 
 ## Develop EventCalendar ##
 
+### running tests ###
+
 - Ruby code is tested by rspec
 - JavaScript code is tested by jasmine
 - For auto testing, I use [tork](https://github.com/sunaku/tork) for ruby code and [Guard support for jasmine-headless-webkit](https://github.com/johnbintz/guard-jasmine-headless-webkit) for JavaScript code
 
-Run ```bundle``` first
-
-```bundle exec tork``` then hit a to run all rspec examples
-```bundle exec guard``` then hit return to run all jasmine expamples
+```bundle``` first. ```bundle exec tork``` then hit a to run all rspec examples. ```bundle exec guard``` then hit return to run all jasmine expamples
 
 ## Thanks ##
 
