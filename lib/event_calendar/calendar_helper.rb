@@ -10,7 +10,9 @@ module ::EventCalendar::CalendarHelper
 
   def hightlight_classes(date, calendar)
     classes = []
-    classes << 'has_events' if calendar.events_on(date).present?
+    events = calendar.events_on(date)
+    classes << 'has_events' if events.present?
+    events.map(&:class).uniq.each {|event_class| classes << event_class.to_s.underscore }
     classes
   end
 
