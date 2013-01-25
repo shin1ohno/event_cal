@@ -1,4 +1,4 @@
-.calendar.monthly
+.calendar.monthly{ :data => { :'base-date' => calendar.base_date }}
   %h1= t('date.abbr_month_names')[calendar.base_date.month]
   = link_to '', previous_month_path(calendar), :class => 'navigation previous'
   = link_to '', next_month_path(calendar), :class => 'navigation next'

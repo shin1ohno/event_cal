@@ -9,5 +9,3 @@ class CalendarApplication
         new controller($(el))
 
 window.CalendarApplication = CalendarApplication
-
-jQuery ($) -> CalendarApplication.initialize()

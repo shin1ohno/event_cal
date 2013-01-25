@@ -1094,8 +1094,4 @@
 
   window.CalendarApplication = CalendarApplication;
 
-  jQuery(function($) {
-    return CalendarApplication.initialize();
-  });
-
 }).call(this);
