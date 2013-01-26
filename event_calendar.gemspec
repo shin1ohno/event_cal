@@ -5,13 +5,13 @@ require "event_calendar/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "event_calendar"
+  s.name        = "event_cal"
   s.version     = EventCalendar::VERSION
   s.authors     = ["Shin'ichi Ohno"]
   s.email       = ["shin1ohno@gmail.com"]
   s.homepage    = "https://github.com/shin1ohno/event_cal"
   s.summary     = "Calendar with event"
-  s.description = "Calendar with event that uses many models"
+  s.description = "Calendar easy to use easy to customize easy to create events on it"
 
   s.files = Dir["{app,config,db,lib,vendor}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.require_paths = ['lib']
