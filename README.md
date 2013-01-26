@@ -15,7 +15,7 @@ You can easily
 ## Use EventCalendar ##
 
 ```ruby
-gem 'event_calendar', github: 'shin1ohno/event_calendar'
+gem 'event_calendar', github: 'shin1ohno/event_cal'
 ```
 
 1. create calendar instance in controller and call ```render_monthly(@calendar)``` in view. simple sample code is below. ***only with this step, you basically can get calendar view***
