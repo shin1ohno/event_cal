@@ -48,9 +48,9 @@
 
     </header>
     <section>
-      <h1>EventCalendar</h1>
+      <h1>EventCal</h1>
 
-      <p>EventCalendar is a calendar with events on it.</p>
+      <p>EventCal is a calendar with events on it.</p>
 
       <div style="display: inline-block; float: left; width:35%;">
         <img src="https://raw.github.com/shin1ohno/event_cal/gh-pages/images/sp_sample.png" width="100%" height="auto"></div>
@@ -68,10 +68,10 @@
 
       <hr>
 
-      <h2>Use EventCalendar</h2>
+      <h2>Use EventCal</h2>
 
       <div class="highlight">
-        <pre><span class="n">gem</span> <span class="s1">'event_calendar'</span><span class="p">,</span> <span class="n">github</span><span class="p">:</span> <span class="s1">'shin1ohno/event_cal'</span>
+        <pre><span class="n">gem</span> <span class="s1">'event_cal'</span><span class="p">,</span> <span class="n">github</span><span class="p">:</span> <span class="s1">'shin1ohno/event_cal'</span>
 </pre>
       </div>
 
@@ -82,7 +82,7 @@
           in view. simple sample code is below.
           <strong><em>only with this step, you basically can get calendar view</em></strong> 
         </li>
-        <li>create event model that extends ::EventCalendar::Events</li>
+        <li>create event model that extends ::EventCal::Events</li>
         <li>
           create partial for each event. with sptep 2 and 3 it's automatically shown in calendar view
         </li>
@@ -95,12 +95,12 @@
       <div class="highlight">
         <pre><span class="k">class</span> <span class="nc">MyCalendarController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="k">def</span> <span class="nf">index</span>
-    <span class="vi">@calendar</span> <span class="o">=</span> <span class="o">::</span><span class="no">EventCalendar</span><span class="o">::</span><span class="no">Calendar</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Date</span><span class="o">.</span><span class="n">today</span><span class="p">)</span>
+    <span class="vi">@calendar</span> <span class="o">=</span> <span class="o">::</span><span class="no">EventCal</span><span class="o">::</span><span class="no">Calendar</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Date</span><span class="o">.</span><span class="n">today</span><span class="p">)</span>
   <span class="k">end</span>
 
   <span class="k">def</span> <span class="nf">show</span>
     <span class="n">date</span> <span class="o">=</span> <span class="no">Date</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">"</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:year</span><span class="o">]</span><span class="si">}</span><span class="s2">-</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:month</span><span class="o">]</span><span class="si">}</span><span class="s2">-</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:date</span><span class="o">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-    <span class="vi">@calendar</span> <span class="o">=</span> <span class="o">::</span><span class="no">EventCalendar</span><span class="o">::</span><span class="no">Calendar</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+    <span class="vi">@calendar</span> <span class="o">=</span> <span class="o">::</span><span class="no">EventCal</span><span class="o">::</span><span class="no">Calendar</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </pre>
@@ -131,7 +131,7 @@
         <pre><span class="c">/*</span>
 <span class="c">in application.css... add sprockets manifest like</span>
 <span class="c">*= require_self</span>
-<span class="c">*= require event_calendar</span>
+<span class="c">*= require event_cal</span>
 <span class="c">*= require_tree .</span>
 <span class="c">*/</span>
 </pre>
@@ -146,7 +146,7 @@
         <pre><span class="c1">// in application.js... add sprockets manifest like</span>
 <span class="c1">//= require jquery</span>
 <span class="c1">//= require jquery_ujs</span>
-<span class="c1">//= require event_calendar</span>
+<span class="c1">//= require event_cal</span>
 <span class="c1">//= require_tree .</span>
 <span class="c1">// and then initialize like this...</span>
 
@@ -161,7 +161,7 @@
 </pre>
       </div>
 
-      <h2>Develop EventCalendar</h2>
+      <h2>Develop EventCal</h2>
 
       <h3>running tests</h3>
 
