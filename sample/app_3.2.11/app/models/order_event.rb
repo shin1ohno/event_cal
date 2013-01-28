@@ -1,6 +1,6 @@
-require 'event_calendar/event'
+require 'event_cal/event'
 
-class OrderEvent < ::EventCalendar::Event
+class OrderEvent < ::EventCal::Event
   attr :order
 
   def initialize(order)
@@ -15,7 +15,7 @@ class OrderEvent < ::EventCalendar::Event
     events = []
     20.times do |i|
       order = user.orders.new(
-        :delivery_on => Date.parse('2012-02-18') + (((-1) ** i) * i * 2).days,
+        :delivery_on => Date.parse('2013-02-18') + (((-1) ** i) * i * 2).days,
         :product_name => "Rspec cook book",
         :tenant_name => "amazon.com"
       )

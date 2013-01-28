@@ -1,0 +1,251 @@
+@import 'bourbon';
+
+$black: #000 !default;
+$dark_gray: #666 !default;
+$gray: #999 !default;
+$light_gray: #ccc !default;
+$extra_light_gray: #f5f5f5 !default;
+$white: #fff !default;
+
+$green: #299618 !default;
+$brown: #4d2200 !default;
+$ivory: #faf3e3 !default;
+
+$event_highlight_color: #A6C7A7 !default;
+$sunday_highlight_color: #b47378 !default;
+$saturday_highlight_color: #4d8a99 !default;
+$header_row_bg_color: #9DB273 !default;
+$base_font_color: #40382B !default;
+
+$body: #3c3c3c !default;
+$body_bg: $ivory !default;
+$default_border: mix(darken($body_bg, 5%), $dark_gray, 90%) !default;
+
+$anchor: #330000 !default;
+$anchor_hover: #663333 !default;
+$anchor_visited: #845f4b !default;
+
+$infinity: -9999px !default;
+
+$calendar_border_attributes: 1px solid darken($extra_light_gray, 8%);
+
+$font_family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "Meiryo", "メイリオ", "Osaka", "MS PGothic",arial, helvetica, sans-serif !default;
+$line_height: 1.5 !default;
+
+.calendar_view {
+  font-family: $font_family;
+  line-height: $line_height;
+  background: $extra_light_gray;
+  margin: 0;
+  -webkit-text-size-adjust: none;
+  a {
+    color: $anchor;
+    &:hover {
+      color: $anchor_hover;
+    }
+    &:visited {
+      color: $anchor_visited;
+    }
+  }
+  img {
+    border: 0;
+    vertical-align: middle;
+  }
+  form, p, dl, dt, dd {
+    margin: 0;
+    padding: 0;
+  }
+  strong {
+    font-weight: bold;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+  }
+  ul, ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  fieldset {
+    border: 1px solid $default_border;
+    background: #fff;
+  }
+  label {
+    cursor: pointer;
+  }
+}
+.calendar.monthly {
+  @include clearfix;
+  @include box-shadow(0 2px 5px lighten($light_gray, 10%));
+  border-top: $calendar_border_attributes;
+  border-bottom: $calendar_border_attributes;
+  background: $white;
+  overflow: hidden;
+  text-align: center;
+  width: 100%;
+  ul, li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    list-style: none;
+  }
+  .navigation {
+    @include position(absolute, 8px 0 0 0);
+    z-index: 1;
+    height: 40px;
+    width: 30%;
+    &.previous {
+      left: 0px;
+    }
+    &.next {
+      right: 0px;
+    }
+    &.today {
+      left: 35%;
+      width: 30%;
+    }
+  }
+  h1 {
+    z-index: 0;
+    border-bottom: $calendar_border_attributes;
+    color: $dark_gray;
+    margin-bottom: 5px;
+    padding: 7px 0;
+    position: relative;
+    text-align: center;
+    &:before,
+    &:after {
+      @include position(absolute, 0px auto auto 0px);
+      width: 38px;
+      height: 38px;
+      background: url(/assets/calendar_prev.png) 50% 50% no-repeat;
+      background-size: 18px 18px;
+      border-right: $calendar_border_attributes;
+      content: '';
+      display: block;
+      opacity: 0.8;
+    }
+    &:after {
+      @include position(absolute, 0px 0px auto auto);
+      background: url(/assets/calendar_next.png) 50% 50% no-repeat;
+      border-left: $calendar_border_attributes;
+      border-right: 0;
+    }
+  }
+  .dates {
+    color: $base_font_color;
+    width: 98%;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .date {
+    position: relative;
+    display: inline-block;
+    float: left;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    width: 14.28%;
+    height: 25px;
+    margin: 2px auto;
+    border-radius: 4px;
+    font-family: 'Helvetica Neue';
+    font-size: 10px;
+    line-height: 1;
+    text-align: center;
+    vertical-align: top;
+    color: $dark_gray;
+    &.has_events {
+      @include box-shadow(0 0 1.5px 1px lighten($event_highlight_color, 18%) inset);
+      background-color: lighten($event_highlight_color, 20%);
+      font-weight: bold;
+    }
+    &.has_events:hover,
+    &.has_events:hover .sunday,
+    &.has_events:hover .saturday {
+      @include box-shadow(none);
+      background-color: $green;
+      color: $white;
+      .event {
+        background: $white;
+      }
+    }
+    &.selected {
+      @include box-shadow(none);
+      background-color: lighten($event_highlight_color, 10%);
+      font-weight: bold;
+    }
+    .header {
+      font-size: 14px;
+      text-align: center;
+    }
+    .sunday {
+      color: $sunday_highlight_color;
+    }
+    .saturday {
+      color: $saturday_highlight_color;
+    }
+  }
+  .date.wday_header {
+    border-radius: 0;
+    height: auto;
+    margin-bottom: 5px;
+    opacity: 0.6;
+    font-weight: normal;
+    &:nth-child(1) {
+      color: $sunday_highlight_color;
+    }
+    &:nth-child(7){
+      color: $saturday_highlight_color;
+    }
+    &.selected {
+      background-color: $white;
+      font-weight: normal;
+    }
+  }
+  .event {
+    width: 5px;
+    height: 5px;
+    border-radius : 5px;
+    background: $green;
+    display: inline-block;
+    margin: -2px 0.5px 0 0.5px;
+    text-indent: $infinity;
+  }
+}
+.event_details {
+  position: relative;
+  text-shadow: 0 1px 0 $white;
+  li {
+    @include clearfix;
+    border-bottom: $calendar_border_attributes;
+    color: $green;
+    font-weight: bold;
+    padding: 1em 0 1em 1em;
+    position: relative;
+    text-indent: 0.7em;
+    &:before {
+      @include position(absolute, 1.6em 0 0 0);
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius : 5px;
+      background: $green;
+      display: inline-block;
+      margin: -2px 0.5px 0 0.5px;
+      text-indent: $infinity;
+    }
+    .event_name {
+      font-weight: bold;
+    }
+  }
+}

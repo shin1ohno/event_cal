@@ -6,4 +6,4 @@
   %ul.dates
     - (calendar.start_on .. calendar.start_on + 6.days).each do |date|
       %li.date.wday_header= t('date.abbr_day_names')[date.wday]
-    = render :partial => 'event_calendar/date', :collection => calendar.dates, :locals => { :calendar => calendar }
+    = render :partial => 'event_cal/date', :collection => calendar.dates, :locals => { :calendar => calendar }

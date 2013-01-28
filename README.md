@@ -1,8 +1,8 @@
 ![](https://travis-ci.org/shin1ohno/event_cal.png?branch=master)
 
-# EventCalendar #
+# EventCal #
 
-EventCalendar is a calendar with events on it.
+EventCal is a calendar with events on it.
 
 <img src='https://raw.github.com/shin1ohno/event_cal/gh-pages/images/sp_sample.png' width = '35%' height= 'auto'>
 
@@ -12,14 +12,14 @@ You can easily
 - customize how events displayed
 - integrate events with existing model
 
-## Use EventCalendar ##
+## Use EventCal ##
 
 ```ruby
-gem 'event_calendar', github: 'shin1ohno/event_cal'
+gem 'event_cal', github: 'shin1ohno/event_cal'
 ```
 
 1. create calendar instance in controller and call ```render_monthly(@calendar)``` in view. simple sample code is below. ***only with this step, you basically can get calendar view***
-2. create event model that extends ::EventCalendar::Events
+2. create event model that extends ::EventCal::Events
 3. create partial for each event. with sptep 2 and 3 it's automatically shown in calendar view
 
 ```sample/app_***``` directory contains sample rails application that shows how you do. This sample runs as normal rails application.
@@ -27,12 +27,12 @@ gem 'event_calendar', github: 'shin1ohno/event_cal'
 ```ruby
 class MyCalendarController < ApplicationController
   def index
-    @calendar = ::EventCalendar::Calendar.new(Date.today)
+    @calendar = ::EventCal::Calendar.new(Date.today)
   end
 
   def show
     date = Date.parse("#{params[:year]}-#{params[:month]}-#{params[:date]}")
-    @calendar = ::EventCalendar::Calendar.new(date)
+    @calendar = ::EventCal::Calendar.new(date)
   end
 end
 ```
@@ -59,7 +59,7 @@ you can use default style for 7days * 4~5 weeks calendar
 /*
  in application.css... add sprockets manifest like
  *= require_self
- *= require event_calendar
+ *= require event_cal
  *= require_tree .
  */
 ```
@@ -70,7 +70,7 @@ you can use basic event detail selector implemented in JavaScript with [Spine.js
 // in application.js... add sprockets manifest like
 //= require jquery
 //= require jquery_ujs
-//= require event_calendar
+//= require event_cal
 //= require_tree .
 // and then initialize like this...
 
@@ -84,7 +84,7 @@ jQuery(function($) {
 });
 ```
 
-## Develop EventCalendar ##
+## Develop EventCal ##
 
 ### running tests ###
 

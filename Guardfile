@@ -10,7 +10,7 @@ guard :shell do
   watch(%r{^vendor\/assets\/(.*)\.js\.coffee$}) do |m|
     js_path = 'vendor/assets/javascripts'
     n m[0], 'Changed'
-    `coffee --join #{js_path}/event_calendar.js --compile #{js_path}/lib/*.coffee #{js_path}/models/*.coffee #{js_path}/controllers/*.coffee #{js_path}/*.coffee`
+    `coffee --join #{js_path}/event_cal.js --compile #{js_path}/lib/*.coffee #{js_path}/models/*.coffee #{js_path}/controllers/*.coffee #{js_path}/*.coffee`
   end
 end
 

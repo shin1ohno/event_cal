@@ -1,4 +1,4 @@
 //= require jquery
 //= require jquery_ujs
-//= require event_calendar
+//= require event_cal
 //= require_tree .

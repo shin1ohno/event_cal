@@ -1,12 +1,12 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
-require "event_calendar/version"
+require "event_cal/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "event_calendar"
-  s.version     = EventCalendar::VERSION
+  s.name        = "event_cal"
+  s.version     = EventCal::VERSION
   s.authors     = ["Shin'ichi Ohno"]
   s.email       = ["shin1ohno@gmail.com"]
   s.homepage    = "https://github.com/shin1ohno/event_cal"

@@ -1,24 +1,24 @@
 require 'spec_helper'
 require 'active_support/core_ext'
-require_relative '../../../lib/event_calendar/calendar'
+require_relative '../../../lib/event_cal/calendar'
 
-describe ::EventCalendar::Calendar do
-  let(:calendar) { ::EventCalendar::Calendar.new(base_date) }
+describe ::EventCal::Calendar do
+  let(:calendar) { ::EventCal::Calendar.new(base_date) }
   let(:base_date) { Date.parse('2013-01-01') }
 
   before { Timecop.freeze('2013-01-01') }
   after { Timecop.return }
 
   describe 'initializer' do
-    subject { ::EventCalendar::Calendar.new() }
-    it { should be_a_kind_of ::EventCalendar::Calendar }
+    subject { ::EventCal::Calendar.new() }
+    it { should be_a_kind_of ::EventCal::Calendar }
 
     describe 'options for initializer' do
       describe 'setting owner' do
         context 'given a option hash' do
           subject { calendar.owner }
           let(:user) { FactoryGirl.build(:user) }
-          let(:calendar) { ::EventCalendar::Calendar.new(owner: user) }
+          let(:calendar) { ::EventCal::Calendar.new(owner: user) }
           it { should == user }
           specify { calendar.base_date.should == Date.today }
         end
@@ -26,7 +26,7 @@ describe ::EventCalendar::Calendar do
         context 'given a date and option hash' do
           subject { calendar.owner }
           let(:user) { FactoryGirl.build(:user) }
-          let(:calendar) { ::EventCalendar::Calendar.new(Date.today, owner: user) }
+          let(:calendar) { ::EventCal::Calendar.new(Date.today, owner: user) }
           it { should == user }
           specify { calendar.base_date.should == Date.today }
         end
@@ -34,7 +34,7 @@ describe ::EventCalendar::Calendar do
 
       context 'geven a invalid option' do
         it 'raises ArgumentError' do
-          expect{ ::EventCalendar::Calendar.new('invalid argument') }.to raise_error(ArgumentError)
+          expect{ ::EventCal::Calendar.new('invalid argument') }.to raise_error(ArgumentError)
         end
       end
     end
@@ -63,16 +63,16 @@ describe ::EventCalendar::Calendar do
 
   describe '#fetch_events' do
     subject { calendar.events }
-    context '1 subclass for ::EventCalendar::Event' do
+    context '1 subclass for ::EventCal::Event' do
       context '3 events for calendar range and 2 is out of the range' do
         before do
-          class HolidayEvent < ::EventCalendar::Event
+          class HolidayEvent < ::EventCal::Event
             def self.all
               []
             end
           end
 
-          class Birthday < ::EventCalendar::Event
+          class Birthday < ::EventCal::Event
             def self.all
               [ self.new(Date.parse('2013-01-08')),
                 self.new(Date.parse('2013-01-18')),
@@ -90,10 +90,10 @@ describe ::EventCalendar::Calendar do
           it { should have(1).events }
         end
 
-        context 'another subclass for ::EventCalendar::Event' do
+        context 'another subclass for ::EventCal::Event' do
           context 'has 2 events in the range' do
             before do
-              class HolidayEvent < ::EventCalendar::Event
+              class HolidayEvent < ::EventCal::Event
                 def self.all
                   [ self.new(Date.parse('2013-01-01')),
                     self.new(Date.parse('2013-01-14'))

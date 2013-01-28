@@ -1,14 +1,14 @@
-require 'event_calendar/calendar'
+require 'event_cal/calendar'
 require 'order_event'
 require 'birthday_event'
 
 class MyCalendarController < ApplicationController
   def index
-    @calendar = ::EventCalendar::Calendar.new(Date.today)
+    @calendar = ::EventCal::Calendar.new(Date.today)
   end
 
   def show
     date = Date.parse("#{params[:year]}-#{params[:month]}-#{params[:date]}")
-    @calendar = ::EventCalendar::Calendar.new(date)
+    @calendar = ::EventCal::Calendar.new(date)
   end
 end

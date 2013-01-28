@@ -1,4 +1,4 @@
-class EventCalendar::Event
+class EventCal::Event
   attr_accessor :held_on, :name
   def initialize(date = Date.today)
     @held_on = date

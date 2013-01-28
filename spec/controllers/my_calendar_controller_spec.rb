@@ -1,10 +1,10 @@
 require 'spec_helper'
-require 'event_calendar/calendar'
+require 'event_cal/calendar'
 
 describe MyCalendarController do
   describe '#index' do
     before { get :index }
-    let(:calendar) { ::EventCalendar::Calendar.new(Date.today) }
+    let(:calendar) { ::EventCal::Calendar.new(Date.today) }
     it { response.should be_ok }
     it 'assigns calendar for today' do
       cal = assigns(:calendar)

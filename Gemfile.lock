@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    event_calendar (1.0)
+    event_cal (1.0)
       bourbon
       haml-rails
       rails
@@ -195,7 +195,7 @@ PLATFORMS
 
 DEPENDENCIES
   em-websocket
-  event_calendar!
+  event_cal!
   factory_girl_rails
   faker
   guard-jasmine-headless-webkit

@@ -1,4 +1,4 @@
-module ::EventCalendar::CalendarHelper
+module ::EventCal::CalendarHelper
   def wday_class_for(date)
     case date.wday
     when 0
@@ -27,7 +27,7 @@ module ::EventCalendar::CalendarHelper
 
   def render_monthly(calendar)
     render(
-      { :partial => 'event_calendar/calendar',
+      { :partial => 'event_cal/calendar',
         :format => :html,
         :locals => { :calendar => calendar },
       }
@@ -36,7 +36,7 @@ module ::EventCalendar::CalendarHelper
 
   def render_event_details(events)
     render(
-      { :partial => 'event_calendar/event_details',
+      { :partial => 'event_cal/event_details',
         :format => :html,
         :locals => { :events => events }
       }

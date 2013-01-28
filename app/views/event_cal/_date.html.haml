@@ -7,4 +7,4 @@
     %ul.events
       - event_for_date.each do |event|
         %li{ :class  => "event #{event.class.to_s.underscore}" }
-          = render "event_calendar/#{event.class.to_s.underscore}", :event => event
+          = render "event_cal/#{event.class.to_s.underscore}", :event => event

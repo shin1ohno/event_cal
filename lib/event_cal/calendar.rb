@@ -1,6 +1,6 @@
-require 'event_calendar/event'
+require 'event_cal/event'
 
-class EventCalendar::Calendar
+class EventCal::Calendar
   attr_accessor :base_date, :start_on, :end_on, :events, :owner
 
   def initialize(date = Date.today, options = {} )
@@ -17,7 +17,7 @@ class EventCalendar::Calendar
   end
 
   def fetch_events
-    @events = ::EventCalendar::Event.subclasses.map { |klass|
+    @events = ::EventCal::Event.subclasses.map { |klass|
       klass.fetch_events(self)
       }.flatten
   end

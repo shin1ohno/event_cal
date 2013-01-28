@@ -1,8 +1,8 @@
 require 'spec_helper'
-require_relative '../../lib/event_calendar/calendar'
-require_relative '../../lib/event_calendar/calendar_helper'
+require_relative '../../lib/event_cal/calendar'
+require_relative '../../lib/event_cal/calendar_helper'
 
-describe ::EventCalendar::CalendarHelper do
+describe ::EventCal::CalendarHelper do
   describe '#wday_class_for(date)' do
     subject { helper.wday_class_for(date) }
     let(:sunday) { Date.parse('2012-12-30') }
@@ -28,9 +28,9 @@ describe ::EventCalendar::CalendarHelper do
   describe '#hightlight_classes' do
     subject { helper.hightlight_classes(date, calendar) }
     let(:date) { Date.parse('2013-01-01') }
-    let(:calendar) { ::EventCalendar::Calendar.new(date) }
+    let(:calendar) { ::EventCal::Calendar.new(date) }
     before do
-      class HolidayEvent < ::EventCalendar::Event
+      class HolidayEvent < ::EventCal::Event
         def self.all
           [self.new(Date.parse('2013-01-01'))]
         end
@@ -49,15 +49,15 @@ describe ::EventCalendar::CalendarHelper do
 
   describe '#render_monthly' do
     subject { render_monthly(calendar) }
-    let(:calendar) { ::EventCalendar::Calendar.new(Date.parse('2013-01-01')) }
+    let(:calendar) { ::EventCal::Calendar.new(Date.parse('2013-01-01')) }
     before do
-      class HolidayEvent < ::EventCalendar::Event
+      class HolidayEvent < ::EventCal::Event
         def self.all
           []
         end
       end
 
-      class Birthday < ::EventCalendar::Event
+      class Birthday < ::EventCal::Event
         def self.all
           []
         end
