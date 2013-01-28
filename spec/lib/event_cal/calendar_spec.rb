@@ -71,6 +71,11 @@ describe ::EventCal::Calendar do
               []
             end
           end
+          class OrderEvent < ::EventCal::Event
+            def self.all
+              []
+            end
+          end
 
           class Birthday < ::EventCal::Event
             def self.all
@@ -83,6 +88,7 @@ describe ::EventCal::Calendar do
             end
           end
         end
+        it { pp calendar.events }
         it { should have(3).events }
 
         describe '#events_on(date)' do
@@ -93,6 +99,11 @@ describe ::EventCal::Calendar do
         context 'another subclass for ::EventCal::Event' do
           context 'has 2 events in the range' do
             before do
+              class OrderEvent < ::EventCal::Event
+                def self.all
+                  []
+                end
+              end
               class HolidayEvent < ::EventCal::Event
                 def self.all
                   [ self.new(Date.parse('2013-01-01')),
