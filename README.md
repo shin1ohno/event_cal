@@ -19,7 +19,7 @@ gem 'event_cal', github: 'shin1ohno/event_cal'
 ```
 
 1. create calendar instance in controller and call ```render_monthly(@calendar)``` in view. simple sample code is below. ***only with this step, you basically can get calendar view***
-2. create event model that extends ::EventCal::Events
+2. create event class that extends ::EventCal::Events
 3. create partial for each event. with sptep 2 and 3 it's automatically shown in calendar view
 
 ```sample/app_***``` directory contains sample rails application that shows how you do. This sample runs as normal rails application.
@@ -87,6 +87,8 @@ jQuery(function($) {
 ## Develop EventCal ##
 
 ### running tests ###
+
+```bundle exec rake``` runs all examples
 
 - Ruby code is tested by rspec
 - JavaScript code is tested by jasmine
