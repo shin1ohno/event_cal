@@ -4,4 +4,7 @@ class CalendarDate extends Spine.Model
   @deactivateAllDates: () ->
     CalendarDate.each((date) -> date.updateAttributes(active: false))
 
+  toPath: () ->
+    moment(@date).format('YYYY/MM/DD')
+
 window.CalendarDate = CalendarDate
