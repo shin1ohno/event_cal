@@ -1,5 +1,6 @@
 [![Travis CI](https://travis-ci.org/shin1ohno/event_cal.png?branch=master)](https://travis-ci.org/shin1ohno/event_cal)
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/shin1ohno/event_cal)
+[![Dependency Status](https://gemnasium.com/shin1ohno/event_cal.png)](https://gemnasium.com/shin1ohno/event_cal)
 
 # EventCal #
 
