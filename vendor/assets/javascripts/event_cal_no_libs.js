@@ -22,6 +22,10 @@
       });
     };
 
+    CalendarDate.prototype.toPath = function() {
+      return moment(this.date).format('YYYY/MM/DD');
+    };
+
     return CalendarDate;
 
   })(Spine.Model);
@@ -163,23 +167,44 @@
       'ul.event_details': CalendarEventsController
     };
 
-    CalendarApplication.initialize = function() {
-      var controller, el, element, _results;
-      _results = [];
+    CalendarApplication.initialize = function(options) {
+      var controller, el, element, _i, _len, _ref;
+      if (options == null) {
+        options = {};
+      }
       for (element in calendarElements) {
         controller = calendarElements[element];
-        _results.push((function() {
-          var _i, _len, _ref, _results1;
-          _ref = $(element);
-          _results1 = [];
-          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-            el = _ref[_i];
-            _results1.push(new controller($(el)));
-          }
-          return _results1;
-        })());
+        _ref = $(element);
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          el = _ref[_i];
+          new controller($(el));
+        }
       }
-      return _results;
+      if (options.history) {
+        return this.initializeHistory(options.basePath);
+      }
+    };
+
+    CalendarApplication.initializeHistory = function(basePath) {
+      CalendarDate.all().map(function(date) {
+        return date.element.bind('click', function(event) {
+          var _ref;
+          return typeof window !== "undefined" && window !== null ? (_ref = window.history) != null ? _ref.pushState({
+            dateObjectId: date.id
+          }, null, "" + basePath + "/" + (date.toPath())) : void 0 : void 0;
+        });
+      });
+      return typeof window !== "undefined" && window !== null ? window.onpopstate = function(event) {
+        var date, _ref;
+        if (((_ref = event.state) != null ? _ref.dateObjectId : void 0) != null) {
+          date = CalendarDate.find(event.state.dateObjectId);
+          date.trigger('activate');
+          CalendarDate.deactivateAllDates();
+          return date.updateAttributes({
+            active: true
+          });
+        }
+      } : void 0;
     };
 
     return CalendarApplication;
