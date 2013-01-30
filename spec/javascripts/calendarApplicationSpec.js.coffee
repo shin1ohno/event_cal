@@ -21,9 +21,14 @@ describe 'calendar application bootstrap', () ->
           expect(el).toBeHidden()
 
   describe 'initialization', () ->
-    spyOn(CalendarApplication, 'initializeHistory')
-    CalendarApplication.initialize({ history: true, basePath: '/calendars' })
-    expect(CalendarApplication.initializeHistory).toHaveBeenCalledWith('/calendars')
+    beforeEach () ->
+      spyOn(CalendarApplication, 'initializeHistory')
+    it 'when called with history: true, initialized history', ->
+      CalendarApplication.initialize({ history: true, basePath: '/calendars' })
+      expect(CalendarApplication.initializeHistory).toHaveBeenCalledWith('/calendars')
+    it 'when called with no arguments, doesnt initialize history', ->
+      CalendarApplication.initialize()
+      expect(CalendarApplication.initializeHistory).not.toHaveBeenCalledWith()
 
   describe 'integration', () ->
     it 'when activate a calendar date ,all events on the date is activated', () ->
