@@ -180,9 +180,12 @@ $line_height: 1.5 !default;
       }
     }
     &.selected {
-      @include box-shadow(none);
-      background-color: lighten($event_highlight_color, 10%);
+      @include box-shadow(0 0 8px -1px $light_gray inset);
       font-weight: bold;
+    }
+    &.today {
+      background: url(/assets/calendar_today.png) 50% 0px no-repeat;
+      background-size: 30px;
     }
     .header {
       font-size: 14px;
