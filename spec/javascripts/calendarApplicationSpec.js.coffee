@@ -20,6 +20,11 @@ describe 'calendar application bootstrap', () ->
         for el in $('.event_detail')
           expect(el).toBeHidden()
 
+  describe 'initialization', () ->
+    spyOn(CalendarApplication, 'initializeHistory')
+    CalendarApplication.initialize({ history: true, basePath: '/calendars' })
+    expect(CalendarApplication.initializeHistory).toHaveBeenCalledWith('/calendars')
+
   describe 'integration', () ->
     it 'when activate a calendar date ,all events on the date is activated', () ->
       date = CalendarDate.findByAttribute('date', '2012-01-18')
