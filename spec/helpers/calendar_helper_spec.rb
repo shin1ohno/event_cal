@@ -36,14 +36,26 @@ describe ::EventCal::CalendarHelper do
         end
       end
     end
-    context 'when it has events on the day' do
-      it { should include 'has_events' }
-      it { should include 'holiday_event' }
+    describe 'event related classes' do
+      context 'when it has events on the day' do
+        it { should include 'has_events' }
+        it { should include 'holiday_event' }
+      end
+      context 'when it donesnt have events on the day' do
+        let(:date) { Date.parse('2013-01-02') }
+        it { should_not include 'has_events' }
+        it { should_not include 'holiday_event' }
+      end
     end
-    context 'when it donesnt have events on the day' do
-      let(:date) { Date.parse('2013-01-02') }
-      it { should_not include 'has_events' }
-      it { should_not include 'holiday_event' }
+    describe 'today class' do
+      after { Timecop.return }
+      it 'doesnt have today for not today date' do
+        should_not include 'today'
+      end
+      it 'has today class for today date' do
+        Timecop.travel(date)
+        should include 'today'
+      end
     end
   end
 
