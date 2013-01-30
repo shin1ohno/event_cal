@@ -1,7 +1,7 @@
 PATH
   remote: /Users/sh1/Documents/work/event_cal
   specs:
-    event_cal (1.2.2)
+    event_cal (1.2.3)
       bourbon
       haml-rails
       rails
