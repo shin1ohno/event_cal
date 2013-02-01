@@ -26,6 +26,10 @@ class EventCal::Calendar
     @events.select{ |event| event.held_on == date }
   end
 
+  def to_param
+    "#{base_date.year}/#{base_date.month}/#{base_date.day}"
+  end
+
   private
 
   def parse_initializer_arguments(date, options)

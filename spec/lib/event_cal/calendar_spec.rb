@@ -61,6 +61,11 @@ describe ::EventCal::Calendar do
     it { should have(7*5).dates }
   end
 
+  describe 'to_param' do
+    subject { calendar.to_param }
+    it { should == "#{base_date.year}/#{base_date.month}/#{base_date.day}" }
+  end
+
   describe '#fetch_events' do
     subject { calendar.events }
     context '1 subclass for ::EventCal::Event' do
