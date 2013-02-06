@@ -6,8 +6,17 @@ describe ::EventCal::Calendar do
   let(:calendar) { ::EventCal::Calendar.new(base_date) }
   let(:base_date) { Date.parse('2013-01-01') }
 
-  before { Timecop.freeze('2013-01-01') }
+  before do
+    Timecop.freeze('2013-01-01')
+    reset_events
+  end
   after { Timecop.return }
+
+  def reset_events
+    ::EventCal::Event.subclasses.each do |klass|
+      klass.class_eval('def self.all; []; end')
+    end
+  end
 
   describe 'initializer' do
     subject { ::EventCal::Calendar.new() }
@@ -71,17 +80,6 @@ describe ::EventCal::Calendar do
     context '1 subclass for ::EventCal::Event' do
       context '3 events for calendar range and 2 is out of the range' do
         before do
-          class HolidayEvent < ::EventCal::Event
-            def self.all
-              []
-            end
-          end
-          class OrderEvent < ::EventCal::Event
-            def self.all
-              []
-            end
-          end
-
           class Birthday < ::EventCal::Event
             def self.all
               [ self.new(Date.parse('2013-01-08')),
@@ -103,11 +101,6 @@ describe ::EventCal::Calendar do
         context 'another subclass for ::EventCal::Event' do
           context 'has 2 events in the range' do
             before do
-              class OrderEvent < ::EventCal::Event
-                def self.all
-                  []
-                end
-              end
               class HolidayEvent < ::EventCal::Event
                 def self.all
                   [ self.new(Date.parse('2013-01-01')),
