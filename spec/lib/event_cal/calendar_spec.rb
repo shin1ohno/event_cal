@@ -49,6 +49,12 @@ describe ::EventCal::Calendar do
     end
 
     describe 'events options' do
+      let(:options) { {} }
+      let(:priority_options) { { priority_events: [HolidayEvent, Birthday] } }
+      let(:only_options) { { only_events: [HolidayEvent] } }
+      let(:except_options) { { except_events: [HolidayEvent] } }
+      let(:calendar) { ::EventCal::Calendar.new(options) }
+
       before do
         class Birthday < ::EventCal::Event
           def self.all
@@ -67,12 +73,62 @@ describe ::EventCal::Calendar do
             ]
           end
         end
+        class SomeEvent < ::EventCal::Event
+          def self.all
+            [ self.new(Date.parse('2013-01-01')),
+              self.new(Date.parse('2013-01-14'))
+            ]
+          end
+        end
       end
+
       describe 'order of events' do
         subject { calendar.events.first.class }
-        let(:calendar) { ::EventCal::Calendar.new(priority_events: [HolidayEvent, Birthday]) }
+        let(:options) { priority_options }
         it { should == HolidayEvent }
       end
+
+      describe 'limit events' do
+        subject { calendar.events.map(&:class) }
+        let(:options) { only_options }
+        it { should include HolidayEvent }
+        it { should_not include Birthday }
+        it { should_not include SomeEvent }
+      end
+
+      describe 'exclude events' do
+        subject { calendar.events.map(&:class) }
+        let(:options) { except_options }
+        it { should_not include HolidayEvent }
+        it { should include Birthday }
+        it { should include SomeEvent }
+      end
+
+      context 'combination of options' do
+        context 'wrong one' do
+          let(:options) { only_options.merge(except_options) }
+          it { expect{ ::EventCal::Calendar.new(options) }.to raise_error(ArgumentError) }
+        end
+
+        context 'right ones' do
+          subject { calendar.events.map(&:class) }
+          context 'only and priority' do
+            let(:options) { only_options.merge(priority_options) }
+            it { should_not include Birthday }
+            it { should_not include SomeEvent }
+            it { should include HolidayEvent }
+          end
+
+          context 'expect and priority' do
+            let(:options) { except_options.merge(priority_options) }
+            it { should include Birthday }
+            it { should include SomeEvent }
+            it { should_not include HolidayEvent }
+            specify { calendar.events.first.class.should == Birthday }
+          end
+        end
+      end
+
     end
   end
 

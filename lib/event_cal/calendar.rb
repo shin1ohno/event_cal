@@ -1,7 +1,7 @@
 require 'event_cal/event'
 
 class EventCal::Calendar
-  attr_accessor :base_date, :start_on, :end_on, :events, :owner, :priority_events
+  attr_accessor :base_date, :start_on, :end_on, :events, :owner, :priority_events, :only_events, :except_events
 
   def initialize(date = Date.today, options = {} )
     parse_initializer_arguments(date, options)
@@ -17,7 +17,18 @@ class EventCal::Calendar
   end
 
   def fetch_events
-    subclasses = @priority_events | ::EventCal::Event.subclasses
+
+    subclasses = if @only_events.present?
+      if @priority_events.present?
+        @priority_events & @only_events
+      else
+        @only_events
+      end
+    elsif @except_events.present?
+      (@priority_events | ::EventCal::Event.subclasses) - @except_events
+    else
+      @priority_events | ::EventCal::Event.subclasses
+    end
 
     @events = subclasses.map { |klass|
       klass.fetch_events(self)
@@ -46,15 +57,24 @@ class EventCal::Calendar
     end
 
     opts.each do |key, value|
-      if key == :owner
+      case key
+      when :owner
         @owner = value
-      elsif key == :priority_events
+      when :priority_events
         @priority_events = value
-      else
-        #ignore other keys
+      when :only_events
+        @only_events = value
+      when :except_events
+        @except_events = value
       end
     end
 
+    if  @only_events.present? & @except_events.present?
+      raise ArgumentError.new("initializing EventCal::Calendar : you passed :only_events and :except_events at once !")
+    end
+
     @priority_events = [] if @priority_events.nil?
+    @only_events = [] if @only_events.nil?
+    @except_events = [] if @except_events.nil?
   end
 end
