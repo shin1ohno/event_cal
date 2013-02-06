@@ -132,7 +132,6 @@ describe ::EventCal::Calendar do
           end
         end
       end
-
     end
   end
 
