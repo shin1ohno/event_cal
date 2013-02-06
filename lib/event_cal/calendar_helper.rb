@@ -20,13 +20,13 @@ module EventCal
       classes
     end
 
-    def previous_month_path(calendar)
+    def path_to_previous_month(calendar)
     end
 
-    def next_month_path(calendar)
+    def path_to_next_month(calendar)
     end
 
-    def today_path(calendar)
+    def path_to_today(calendar)
     end
 
     def render_monthly(calendar)

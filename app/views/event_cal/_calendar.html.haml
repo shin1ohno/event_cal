@@ -1,8 +1,8 @@
 .calendar.monthly{ :data => { :'base-date' => calendar.base_date }}
   %h1= t('date.abbr_month_names')[calendar.base_date.month]
-  = link_to '', previous_month_path(calendar), :class => 'navigation previous'
-  = link_to '', next_month_path(calendar), :class => 'navigation next'
-  = link_to '', today_path(calendar), :class => 'navigation today'
+  = link_to '', path_to_previous_month(calendar), :class => 'navigation previous'
+  = link_to '', path_to_next_month(calendar), :class => 'navigation next'
+  = link_to '', path_to_today(calendar), :class => 'navigation today'
   %ul.dates
     - (calendar.start_on .. calendar.start_on + 6.days).each do |date|
       %li.date.wday_header= t('date.abbr_day_names')[date.wday]

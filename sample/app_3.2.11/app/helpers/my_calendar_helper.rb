@@ -1,15 +1,15 @@
 module MyCalendarHelper
-  def previous_month_path(calendar)
+  def path_to_previous_month(calendar)
     date = calendar.base_date.beginning_of_month - 1.month
     date_to_path(date)
   end
 
-  def next_month_path(calendar)
+  def path_to_next_month(calendar)
     date = calendar.base_date.beginning_of_month + 1.month
     date_to_path(date)
   end
 
-  def today_path(calendar)
+  def path_to_today(calendar)
     date_to_path(Date.today)
   end
 
