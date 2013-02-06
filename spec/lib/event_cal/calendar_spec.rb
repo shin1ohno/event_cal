@@ -86,6 +86,10 @@ describe ::EventCal::Calendar do
         subject { calendar.events.first.class }
         let(:options) { priority_options }
         it { should == HolidayEvent }
+        context 'opposit order' do
+          let(:priority_options) { { priority_events: [Birthday, HolidayEvent] } }
+          it { should == Birthday }
+        end
       end
 
       describe 'limit events' do
