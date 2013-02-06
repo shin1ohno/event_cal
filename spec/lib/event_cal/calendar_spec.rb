@@ -47,6 +47,33 @@ describe ::EventCal::Calendar do
         end
       end
     end
+
+    describe 'events options' do
+      before do
+        class Birthday < ::EventCal::Event
+          def self.all
+            [ self.new(Date.parse('2013-01-08')),
+              self.new(Date.parse('2013-01-18')),
+              self.new(Date.parse('2013-02-02')),
+              self.new(Date.parse('2013-02-03')),
+              self.new(Date.parse('2013-02-08'))
+            ]
+          end
+        end
+        class HolidayEvent < ::EventCal::Event
+          def self.all
+            [ self.new(Date.parse('2013-01-01')),
+              self.new(Date.parse('2013-01-14'))
+            ]
+          end
+        end
+      end
+      describe 'order of events' do
+        subject { calendar.events.first.class }
+        let(:calendar) { ::EventCal::Calendar.new(priority_events: [HolidayEvent, Birthday]) }
+        it { should == HolidayEvent }
+      end
+    end
   end
 
   describe '#start_on' do

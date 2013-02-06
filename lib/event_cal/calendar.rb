@@ -1,7 +1,7 @@
 require 'event_cal/event'
 
 class EventCal::Calendar
-  attr_accessor :base_date, :start_on, :end_on, :events, :owner
+  attr_accessor :base_date, :start_on, :end_on, :events, :owner, :priority_events
 
   def initialize(date = Date.today, options = {} )
     parse_initializer_arguments(date, options)
@@ -17,7 +17,9 @@ class EventCal::Calendar
   end
 
   def fetch_events
-    @events = ::EventCal::Event.subclasses.map { |klass|
+    subclasses = @priority_events | ::EventCal::Event.subclasses
+
+    @events = subclasses.map { |klass|
       klass.fetch_events(self)
       }.flatten
   end
@@ -46,9 +48,13 @@ class EventCal::Calendar
     opts.each do |key, value|
       if key == :owner
         @owner = value
+      elsif key == :priority_events
+        @priority_events = value
       else
         #ignore other keys
       end
     end
+
+    @priority_events = [] if @priority_events.nil?
   end
 end
