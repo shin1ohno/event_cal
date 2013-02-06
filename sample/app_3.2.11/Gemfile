@@ -6,7 +6,7 @@ gemspec path: File.expand_path('../../../', __FILE__)
 
 gem 'haml-rails'
 gem 'sqlite3'
-gem 'puma'
+gem 'puma', github: 'puma/puma'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
