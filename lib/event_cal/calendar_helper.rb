@@ -31,7 +31,7 @@ module EventCal
 
     def render_monthly(calendar)
       render(
-        { :partial => 'event_cal/calendar',
+        { :partial => 'shared/event_cal/calendar',
           :format => :html,
           :locals => { :calendar => calendar },
         }
@@ -40,7 +40,7 @@ module EventCal
 
     def render_event_details(events)
       render(
-        { :partial => 'event_cal/event_details',
+        { :partial => 'shared/event_cal/event_details',
           :format => :html,
           :locals => { :events => events }
         }
