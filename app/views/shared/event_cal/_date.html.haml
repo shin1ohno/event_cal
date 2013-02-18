@@ -1,10 +1,10 @@
-- event_for_date = calendar.events_on(date)
+- events = calendar.events_on(date)
 
 %li.date{ :class => hightlight_classes(date, calendar).join(' '), :data => { :date => date }}
   .header
     %span{ :class => wday_class_for(date) }= date.strftime('%-d')
-  - if event_for_date.present?
+  - if events.present?
     %ul.events
-      - event_for_date.each do |event|
+      - events.each do |event|
         %li{ :class  => "event #{event.class.to_s.underscore}" }
           = render "shared/event_cal/#{event.class.to_s.underscore}", :event => event
