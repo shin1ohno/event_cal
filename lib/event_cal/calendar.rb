@@ -9,6 +9,14 @@ class EventCal::Calendar
     @start_on = @base_date.beginning_of_month.beginning_of_week.advance(:days => -1)
     @end_on = @base_date.end_of_month.end_of_week.advance(:days => -1)
 
+    if @start_on <= @base_date.beginning_of_month - 7.day
+      @start_on = @base_date.beginning_of_month
+    end
+
+    if @end_on < @base_date.end_of_month
+      @end_on = @base_date.end_of_month.end_of_week.advance(:days => 6)
+    end
+
     fetch_events
   end
 
