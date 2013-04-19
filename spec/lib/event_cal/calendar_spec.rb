@@ -4,10 +4,10 @@ require_relative '../../../lib/event_cal/calendar'
 
 describe ::EventCal::Calendar do
   let(:calendar) { ::EventCal::Calendar.new(base_date) }
-  let(:base_date) { Date.parse('2013-01-01') }
+  let(:base_date) { Date.new(2013, 1, 1) }
 
   before do
-    Timecop.freeze('2013-01-01')
+    Timecop.travel(2013, 1, 1)
     reset_events
   end
   after { Timecop.return }
@@ -58,25 +58,25 @@ describe ::EventCal::Calendar do
       before do
         class Birthday < ::EventCal::Event
           def self.all
-            [ self.new(Date.parse('2013-01-08')),
-              self.new(Date.parse('2013-01-18')),
-              self.new(Date.parse('2013-02-02')),
-              self.new(Date.parse('2013-02-03')),
-              self.new(Date.parse('2013-02-08'))
+            [ self.new(Date.new(2013, 1 ,8)),
+              self.new(Date.new(2013, 1 ,18)),
+              self.new(Date.new(2013, 2 ,2)),
+              self.new(Date.new(2013, 2 ,3)),
+              self.new(Date.new(2013, 2 ,8))
             ]
           end
         end
         class HolidayEvent < ::EventCal::Event
           def self.all
-            [ self.new(Date.parse('2013-01-01')),
-              self.new(Date.parse('2013-01-14'))
+            [ self.new(Date.new(2013, 1 ,1)),
+              self.new(Date.new(2013, 1 ,14))
             ]
           end
         end
         class SomeEvent < ::EventCal::Event
           def self.all
-            [ self.new(Date.parse('2013-01-01')),
-              self.new(Date.parse('2013-01-14'))
+            [ self.new(Date.new(2013, 1 ,1)),
+              self.new(Date.new(2013, 1 ,14))
             ]
           end
         end
@@ -138,12 +138,12 @@ describe ::EventCal::Calendar do
 
   describe '#start_on' do
     subject { calendar.start_on }
-    it { should == Date.parse('2012-12-30') }
+    it { should == Date.new(2012, 12, 30) }
   end
 
   describe '#end_on' do
     subject { calendar.end_on }
-    it { should == Date.parse('2013-02-02') }
+    it { should == Date.new(2013, 2 ,2) }
   end
 
   describe '#base_date' do
@@ -169,11 +169,11 @@ describe ::EventCal::Calendar do
         before do
           class Birthday < ::EventCal::Event
             def self.all
-              [ self.new(Date.parse('2013-01-08')),
-                self.new(Date.parse('2013-01-18')),
-                self.new(Date.parse('2013-02-02')),
-                self.new(Date.parse('2013-02-03')),
-                self.new(Date.parse('2013-02-08'))
+              [ self.new(Date.new(2013, 1 ,8)),
+                self.new(Date.new(2013, 1 ,18)),
+                self.new(Date.new(2013, 2 ,2)),
+                self.new(Date.new(2013, 2 ,3)),
+                self.new(Date.new(2013, 2 ,8))
               ]
             end
           end
@@ -181,7 +181,7 @@ describe ::EventCal::Calendar do
         it { should have(3).events }
 
         describe '#events_on(date)' do
-          subject { calendar.events_on(Date.parse('2013-01-08')) }
+          subject { calendar.events_on(Date.new(2013, 1 ,8)) }
           it { should have(1).events }
         end
 
@@ -190,8 +190,8 @@ describe ::EventCal::Calendar do
             before do
               class HolidayEvent < ::EventCal::Event
                 def self.all
-                  [ self.new(Date.parse('2013-01-01')),
-                    self.new(Date.parse('2013-01-14'))
+                  [ self.new(Date.new(2013, 1 ,1)),
+                    self.new(Date.new(2013, 1 ,14))
                   ]
                 end
               end
