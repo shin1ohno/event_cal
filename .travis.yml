@@ -17,9 +17,9 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
 
 script:
-  - 'cd sample/app_3.2.12 && RAILS_ENV=test bundle exec rake db:create && cd ../../'
-  - 'cd sample/app_3.2.12 && RAILS_ENV=test bundle exec rake db:migrate --trace && cd ../../'
-  - 'cd sample/app_3.2.12 && bundle exec rake db:test:prepare && cd ../../'
+  - 'cd sample/app_3.2.13 && RAILS_ENV=test bundle exec rake db:create && cd ../../'
+  - 'cd sample/app_3.2.13 && RAILS_ENV=test bundle exec rake db:migrate --trace && cd ../../'
+  - 'cd sample/app_3.2.13 && bundle exec rake db:test:prepare && cd ../../'
   - 'bundle exec rake'
 
 matrix:
