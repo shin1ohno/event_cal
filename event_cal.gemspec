@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails'
   s.add_dependency 'haml-rails'
   s.add_dependency 'bourbon'
-  s.add_development_dependency 'rspec', '2.12'
+  s.add_development_dependency 'rspec', '2.13'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'faker'
